@@ -1,6 +1,7 @@
-package Operatore_BOT_GUI.model;
-	
+package Operatore_BOT_GUI.controller;
+
 import Operatore_BOT_GUI.controller.StartController;
+import Operatore_BOT_GUI.model.Model;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -12,7 +13,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("../Users/scorl/git/OperatoreAnalogicoGUI/Operatore_BOT_GUI/src/Operatore_BOT_GUI/controller/Start.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("Start.fxml"));
 			AnchorPane root = (AnchorPane)loader.load();
 			
 			Model model = new Model();
@@ -32,3 +33,4 @@ public class Main extends Application {
 		launch(args);
 	}
 }
+
