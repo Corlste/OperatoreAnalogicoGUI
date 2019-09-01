@@ -8,6 +8,7 @@ public class Model {
 
 	private List<Azienda> aziende;
 	private Azienda azienda;
+	private Azienda aziendaCompara;
 	
 	public Model() {
 		super();
@@ -38,6 +39,10 @@ public class Model {
 		this.aziende = aziende;
 	}
 	
+	public void getInfoAzienda (Azienda azienda) {
+		
+		
+	}
 	
 	
 	

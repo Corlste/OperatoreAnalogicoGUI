@@ -1,0 +1,41 @@
+package Operatore_BOT_GUI.DAO;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import Operatore_BOT_GUI.model.Bilancio;
+
+public class BilancioDAO {
+
+	public List<Bilancio> getTuttiIBilanci(){
+		
+		final String sqlAllBilanci = "SELECT * FROM bilancio";
+		List<Bilancio> bilanci = new LinkedList<Bilancio>();
+		
+		try {
+			Connection conn = DBConnect.getConnection();
+			PreparedStatement st = conn.prepareStatement(sqlAllBilanci);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				Bilancio bil = new Bilancio(rs.getString(1), rs.getInt(2),rs.getString(3), rs.getDouble(4), rs.getDouble(5), 
+						rs.getDouble(6),rs.getDouble(7),rs.getDouble(8), rs.getDouble(9), rs.getDouble(10),rs.getFloat(11),rs.getFloat(12),
+						rs.getFloat(13),rs.getFloat(14),rs.getFloat(15),rs.getFloat(16),rs.getFloat(17),rs.getFloat(18),rs.getFloat(19),
+						rs.getFloat(20),rs.getFloat(21),rs.getFloat(22),rs.getFloat(23),rs.getFloat(24),rs.getFloat(25),rs.getFloat(26),
+						rs.getFloat(27),rs.getFloat(28),rs.getFloat(29),rs.getFloat(30),rs.getFloat(31),rs.getFloat(32),rs.getFloat(33)); 
+				bilanci.add(bil);
+				
+			}
+			st.close();
+			conn.close();
+			return bilanci;
+		}catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Errore DB");
+		}
+		
+	}
+}

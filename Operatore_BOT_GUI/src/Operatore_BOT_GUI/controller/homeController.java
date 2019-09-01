@@ -7,6 +7,7 @@ package Operatore_BOT_GUI.controller;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.StringTokenizer;
 
 import Operatore_BOT_GUI.model.Azienda;
 import Operatore_BOT_GUI.model.Model;
@@ -74,20 +75,21 @@ public class homeController {
     private Model model;
     
     List<Azienda> aziende;
+    List<Azienda> aziendeCompetitor;
     
     public void setModel(Model model) {
     	this.model = model;
     	Azienda azienda = model.getAzienda();
     	lblAzienda.setText(azienda.toString());
-    	aziende=model.getAziendeMenoSelezionata();
-    	if(aziende.size()>0) {
-    		btnCompetitor1.setText(aziende.get(0).toString());
-    		if(aziende.size()>1) {
-    			btnCompetitor2.setText(aziende.get(1).toString());
-    			if(aziende.size()>2) {
-    				btnCompetitor3.setText(aziende.get(2).toString());
-    				if(aziende.size()>3) {
-    					btnCompetitor4.setText(aziende.get(3).toString());
+    	aziendeCompetitor=model.getAziendeMenoSelezionata();
+    	if(aziendeCompetitor.size()>0) {
+    		btnCompetitor1.setText(aziendeCompetitor.get(0).toString());
+    		if(aziendeCompetitor.size()>1) {
+    			btnCompetitor2.setText(aziendeCompetitor.get(1).toString());
+    			if(aziendeCompetitor.size()>2) {
+    				btnCompetitor3.setText(aziendeCompetitor.get(2).toString());
+    				if(aziendeCompetitor.size()>3) {
+    					btnCompetitor4.setText(aziendeCompetitor.get(3).toString());
     				}
     			}
     		}
@@ -116,6 +118,18 @@ public class homeController {
 
     @FXML
     void doCompara1(ActionEvent event) {
+//    	String partitaIva;
+//    	String azCompetitor = btnCompetitor1.getText();
+//    	StringTokenizer st = new StringTokenizer(azCompetitor);
+//    	while (st.hasMoreTokens()) {
+//    		if(st.nextToken().compareTo("iva")==0) {
+//    			partitaIva = st.nextToken().replace(";", "");
+//    			System.out.println(partitaIva);
+//    		}
+//    	}
+    	
+    	Azienda competitor = aziendeCompetitor.get(0);
+    	
 
     }
 
