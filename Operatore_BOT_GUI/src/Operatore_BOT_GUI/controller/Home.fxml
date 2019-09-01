@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="homeController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="Operatore_BOT_GUI.controller.homeController">
    <children>
       <HBox>
          <children>

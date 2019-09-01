@@ -3,6 +3,7 @@ package Operatore_BOT_GUI.controller;
  * Sample Skeleton for 'Start.fxml' Controller Class
  */
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 import java.util.ResourceBundle;
@@ -11,8 +12,14 @@ import Operatore_BOT_GUI.model.Azienda;
 import Operatore_BOT_GUI.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class StartController {
 	private Model model;
@@ -36,8 +43,20 @@ public class StartController {
     	cmbAzienda.getItems().add(0, null);
     }
     @FXML
-    void doBtnCerca(ActionEvent event) {
-
+    void doBtnCerca(ActionEvent event) throws IOException {
+    	model.setAzienda(cmbAzienda.getValue());
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
+		AnchorPane root = (AnchorPane)loader.load();
+		homeController controller = loader.getController();
+		controller.setModel(model);
+		
+//    	Parent parent = FXMLLoader.load(getClass().getResource("Home.fxml"));
+//    	Scene goToHome = new Scene(parent);
+    	Scene goToHome = new Scene(root);
+    	Stage windowHome = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	windowHome.setScene(goToHome);
+    	windowHome.show();
+    	
     }
 
     @FXML

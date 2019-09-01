@@ -5,7 +5,11 @@ package Operatore_BOT_GUI.controller;
  */
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+
+import Operatore_BOT_GUI.model.Azienda;
+import Operatore_BOT_GUI.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -66,6 +70,29 @@ public class homeController {
 
     @FXML // fx:id="btnCompara4"
     private Button btnCompara4; // Value injected by FXMLLoader
+    
+    private Model model;
+    
+    List<Azienda> aziende;
+    
+    public void setModel(Model model) {
+    	this.model = model;
+    	Azienda azienda = model.getAzienda();
+    	lblAzienda.setText(azienda.toString());
+    	aziende=model.getAziendeMenoSelezionata();
+    	if(aziende.size()>0) {
+    		btnCompetitor1.setText(aziende.get(0).toString());
+    		if(aziende.size()>1) {
+    			btnCompetitor2.setText(aziende.get(1).toString());
+    			if(aziende.size()>2) {
+    				btnCompetitor3.setText(aziende.get(2).toString());
+    				if(aziende.size()>3) {
+    					btnCompetitor4.setText(aziende.get(3).toString());
+    				}
+    			}
+    		}
+    	}
+    }
 
     @FXML
     void doAppalti(ActionEvent event) {
@@ -144,6 +171,7 @@ public class homeController {
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
+
         assert lblAzienda != null : "fx:id=\"lblAzienda\" was not injected: check your FXML file 'Home.fxml'.";
         assert btnProdotti != null : "fx:id=\"btnProdotti\" was not injected: check your FXML file 'Home.fxml'.";
         assert btnNews != null : "fx:id=\"btnNews\" was not injected: check your FXML file 'Home.fxml'.";

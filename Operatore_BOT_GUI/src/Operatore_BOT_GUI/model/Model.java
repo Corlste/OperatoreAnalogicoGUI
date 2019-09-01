@@ -7,6 +7,7 @@ import Operatore_BOT_GUI.DAO.AziendaDAO;
 public class Model {
 
 	private List<Azienda> aziende;
+	private Azienda azienda;
 	
 	public Model() {
 		super();
@@ -14,7 +15,22 @@ public class Model {
 		this.aziende = dao.getTutteLeAziende();
 	}
 
+	
+	public Azienda getAzienda() {
+		return azienda;
+	}
+
+	public void setAzienda(Azienda azienda) {
+		this.azienda = azienda;
+	}
+
 	public List<Azienda> getAziende() {
+		return aziende;
+	}
+	
+	public List<Azienda> getAziendeMenoSelezionata(){
+//		this.azienda = azienda;
+		aziende.remove(azienda);
 		return aziende;
 	}
 

@@ -252,7 +252,7 @@ public class Azienda {
 
 		@Override
 		public String toString() {
-			return "Azienda " + nomeAzienda+ ";";
+			return "Azienda " + nomeAzienda+" "+ ragioneSociale + ", Partita iva "+ partitaIVA +";";
 		}
 
 		
