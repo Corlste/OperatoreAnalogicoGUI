@@ -3,12 +3,13 @@ package Operatore_BOT_GUI.model;
 import java.util.*;
 
 import Operatore_BOT_GUI.DAO.AziendaDAO;
+import Operatore_BOT_GUI.DAO.BilancioDAO;
 
 public class Model {
 
 	private List<Azienda> aziende;
 	private Azienda azienda;
-	private Azienda aziendaCompara;
+	private Azienda competitor;
 	
 	public Model() {
 		super();
@@ -30,7 +31,6 @@ public class Model {
 	}
 	
 	public List<Azienda> getAziendeMenoSelezionata(){
-//		this.azienda = azienda;
 		aziende.remove(azienda);
 		return aziende;
 	}
@@ -39,11 +39,29 @@ public class Model {
 		this.aziende = aziende;
 	}
 	
+	
+	
+	public Azienda getCompetitor() {
+		return competitor;
+	}
+
+
+	public void setCompetitor(Azienda competitor) {
+		this.competitor = competitor;
+	}
+
+
 	public void getInfoAzienda (Azienda azienda) {
 		
 		
 	}
 	
+	public Bilancio getBilancioAziendaAnno(Azienda azienda, int anno) {
+		BilancioDAO bilancioDAO = new BilancioDAO();
+		Bilancio bilancio = bilancioDAO.getBilancioAziendaAnno(azienda, anno);
+		System.out.println(bilancio.toString());
+		return bilancio;
+	}
 	
 	
 	

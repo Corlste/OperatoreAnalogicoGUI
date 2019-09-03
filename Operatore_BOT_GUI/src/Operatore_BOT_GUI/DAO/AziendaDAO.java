@@ -34,8 +34,5 @@ public class AziendaDAO {
 			e.printStackTrace();
 			throw new RuntimeException("Erroredb");
 		}
-		
-		
 	}
-
 }

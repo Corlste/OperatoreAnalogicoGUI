@@ -1,5 +1,7 @@
 package Operatore_BOT_GUI.model;
 
+import java.math.BigDecimal;
+
 public class Bilancio {
 
 	private String partitaIVA;
@@ -85,6 +87,20 @@ public class Bilancio {
 		this.durataMediaCrediti = durataMediaCrediti;
 		this.durataMediaDebiti = durataMediaDebiti;
 		this.investimentiReD = investimentiReD;
+	}
+	
+	
+
+
+
+	
+
+
+
+	@Override
+	public String toString() {
+		return "Bilancio [partitaIVA=" + partitaIVA + ", anno=" + anno + ", ricavi=" + ricavi + ", valoreAggiunto="
+				+ valoreAggiunto + "]";
 	}
 
 

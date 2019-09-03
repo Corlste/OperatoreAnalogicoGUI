@@ -1,18 +1,17 @@
 package Operatore_BOT_GUI.controller;
 
-/**
- * Sample Skeleton for 'Compara.fxml' Controller Class
- */
 
-/**
- * Sample Skeleton for 'assadsa.fxml' Controller Class
- */
+
 /**
  * Sample Skeleton for 'Compara.fxml' Controller Class
  */
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import Operatore_BOT_GUI.model.Azienda;
+import Operatore_BOT_GUI.model.Bilancio;
+import Operatore_BOT_GUI.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -20,7 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
-public class comparaController {
+public class ComparaController {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -961,6 +960,22 @@ public class comparaController {
     @FXML // fx:id="txtNumArtRil"
     private TextField txtNumArtRil; // Value injected by FXMLLoader
 
+    Model model;
+    
+    public void setModel(Model model) {
+    	this.model = model;
+    	Azienda azienda = model.getAzienda();
+    	Azienda competitor = model.getCompetitor();
+    	Bilancio bilancioAz2016 = model.getBilancioAziendaAnno(azienda, 2016);
+    	
+    	lblAziendaComp.setText(azienda.getNomeAzienda());
+    	btnCompetitorComp.setText(competitor.getNomeAzienda());
+    	System.out.println(bilancioAz2016.getRicavi());
+    	System.out.println(bilancioAz2016.getValoreAggiunto());
+    	System.out.println(bilancioAz2016.getROI());
+//    	txtfatturato16.setText(ilancioAz2016.getRicavi()));
+    }
+    
     @FXML
     void doEstraiAppalti(ActionEvent event) {
 

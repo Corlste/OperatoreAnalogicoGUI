@@ -1,5 +1,7 @@
 package Operatore_BOT_GUI.controller;
 
+import java.io.IOException;
+
 /**
  * Sample Skeleton for 'Home.fxml' Controller Class
  */
@@ -13,8 +15,14 @@ import Operatore_BOT_GUI.model.Azienda;
 import Operatore_BOT_GUI.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class homeController {
 
@@ -117,7 +125,7 @@ public class homeController {
     }
 
     @FXML
-    void doCompara1(ActionEvent event) {
+    void doCompara1(ActionEvent event) throws IOException {
 //    	String partitaIva;
 //    	String azCompetitor = btnCompetitor1.getText();
 //    	StringTokenizer st = new StringTokenizer(azCompetitor);
@@ -129,7 +137,20 @@ public class homeController {
 //    	}
     	
     	Azienda competitor = aziendeCompetitor.get(0);
+    	System.out.println(competitor);
     	
+    	model.setCompetitor(competitor);
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Compara.fxml"));
+		ScrollPane root = (ScrollPane)loader.load();
+		ComparaController controller = loader.getController();
+		controller.setModel(model);
+		
+//    	Parent parent = FXMLLoader.load(getClass().getResource("Home.fxml"));
+//    	Scene goToHome = new Scene(parent);
+    	Scene goToHome = new Scene(root);
+    	Stage windowHome = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	windowHome.setScene(goToHome);
+    	windowHome.show();
 
     }
 
