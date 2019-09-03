@@ -126,15 +126,6 @@ public class homeController {
 
     @FXML
     void doCompara1(ActionEvent event) throws IOException {
-//    	String partitaIva;
-//    	String azCompetitor = btnCompetitor1.getText();
-//    	StringTokenizer st = new StringTokenizer(azCompetitor);
-//    	while (st.hasMoreTokens()) {
-//    		if(st.nextToken().compareTo("iva")==0) {
-//    			partitaIva = st.nextToken().replace(";", "");
-//    			System.out.println(partitaIva);
-//    		}
-//    	}
     	
     	Azienda competitor = aziendeCompetitor.get(0);
     	System.out.println(competitor);
@@ -155,17 +146,62 @@ public class homeController {
     }
 
     @FXML
-    void doCompara2(ActionEvent event) {
+    void doCompara2(ActionEvent event) throws IOException {
+    	Azienda competitor = aziendeCompetitor.get(1);
+    	System.out.println(competitor);
+    	
+    	model.setCompetitor(competitor);
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Compara.fxml"));
+		ScrollPane root = (ScrollPane)loader.load();
+		ComparaController controller = loader.getController();
+		controller.setModel(model);
+		
+//    	Parent parent = FXMLLoader.load(getClass().getResource("Home.fxml"));
+//    	Scene goToHome = new Scene(parent);
+    	Scene goToHome = new Scene(root);
+    	Stage windowHome = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	windowHome.setScene(goToHome);
+    	windowHome.show();
 
     }
 
     @FXML
-    void doCompara3(ActionEvent event) {
+    void doCompara3(ActionEvent event) throws IOException {
+    	Azienda competitor = aziendeCompetitor.get(2);
+    	System.out.println(competitor);
+    	
+    	model.setCompetitor(competitor);
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Compara.fxml"));
+		ScrollPane root = (ScrollPane)loader.load();
+		ComparaController controller = loader.getController();
+		controller.setModel(model);
+		
+//    	Parent parent = FXMLLoader.load(getClass().getResource("Home.fxml"));
+//    	Scene goToHome = new Scene(parent);
+    	Scene goToHome = new Scene(root);
+    	Stage windowHome = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	windowHome.setScene(goToHome);
+    	windowHome.show();
 
     }
 
     @FXML
-    void doCompara4(ActionEvent event) {
+    void doCompara4(ActionEvent event) throws IOException {
+    	Azienda competitor = aziendeCompetitor.get(3);
+    	System.out.println(competitor);
+    	
+    	model.setCompetitor(competitor);
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Compara.fxml"));
+		ScrollPane root = (ScrollPane)loader.load();
+		ComparaController controller = loader.getController();
+		controller.setModel(model);
+		
+//    	Parent parent = FXMLLoader.load(getClass().getResource("Home.fxml"));
+//    	Scene goToHome = new Scene(parent);
+    	Scene goToHome = new Scene(root);
+    	Stage windowHome = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	windowHome.setScene(goToHome);
+    	windowHome.show();
 
     }
 
