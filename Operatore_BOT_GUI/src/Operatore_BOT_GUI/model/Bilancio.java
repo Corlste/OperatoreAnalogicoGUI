@@ -45,6 +45,17 @@ public class Bilancio {
 	}
 	
 	
+	
+
+	public Bilancio(String partitaIVA, int anno, double ricavi) {
+		super();
+		this.partitaIVA = partitaIVA;
+		this.anno = anno;
+		this.ricavi = ricavi;
+	}
+
+
+
 
 	public Bilancio(String partitaIVA, int anno, String codiceAteco, double ricavi, double valoreAggiunto, double MOL,
 			double redditoOperativo, double risultatoEsercizio, double capitaleCircNetto, double patrimonioNetto,

@@ -59,7 +59,12 @@ public class Model {
 	public Bilancio getBilancioAziendaAnno(Azienda azienda, int anno) {
 		BilancioDAO bilancioDAO = new BilancioDAO();
 		Bilancio bilancio = bilancioDAO.getBilancioAziendaAnno(azienda, anno);
-		System.out.println(bilancio.toString());
+		return bilancio;
+	}
+	
+	public Bilancio getRicaviAziendaAnnoProva(Azienda azienda, int anno) {
+		BilancioDAO bilancioDAO = new BilancioDAO();
+		Bilancio bilancio = bilancioDAO.getRicaviAziendaAnno(azienda, anno);
 		return bilancio;
 	}
 	
