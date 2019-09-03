@@ -10,7 +10,6 @@ public class Azienda {
 		private int webRepIndex = 0;
 		
 		private ArrayList<Brevetto> brevetti = new ArrayList<Brevetto>();
-		private ArrayList<Risultato> articoli = new ArrayList<Risultato>();
 		
 		private String indirizzo;
 		private String comune;
@@ -106,17 +105,6 @@ public class Azienda {
 			this.ragioneSociale = ragioneSociale;
 		}
 		
-		public void setArticoli (ArrayList<Risultato> arts){
-			this.articoli = arts;		
-		}
-		
-		public ArrayList<Risultato> getArticoli (){
-			return this.articoli;
-		}
-		
-		public void addArticle (Risultato res) {
-			articoli.add(res);
-		}
 
 		public String getIndirizzo() {
 			return indirizzo;

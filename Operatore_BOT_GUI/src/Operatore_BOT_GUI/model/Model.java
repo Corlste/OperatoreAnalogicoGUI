@@ -2,6 +2,7 @@ package Operatore_BOT_GUI.model;
 
 import java.util.*;
 
+import Operatore_BOT_GUI.DAO.AppaltoDAO;
 import Operatore_BOT_GUI.DAO.AziendaDAO;
 import Operatore_BOT_GUI.DAO.BilancioDAO;
 
@@ -68,6 +69,11 @@ public class Model {
 		return bilancio;
 	}
 	
+	public List<Appalto> getAppaltiAzienda(Azienda azienda) {
+		AppaltoDAO appaltoDAO = new AppaltoDAO();
+		List<Appalto> appalti = appaltoDAO.getAppaltiAzienda(azienda);
+		return appalti;
+	}
 	
 	
 }

@@ -7,8 +7,10 @@ package Operatore_BOT_GUI.controller;
  */
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import Operatore_BOT_GUI.model.Appalto;
 import Operatore_BOT_GUI.model.Azienda;
 import Operatore_BOT_GUI.model.Bilancio;
 import Operatore_BOT_GUI.model.Model;
@@ -802,37 +804,37 @@ public class ComparaController {
     private TextField txtAppVinti161; // Value injected by FXMLLoader
 
     @FXML // fx:id="AppVinti171"
-    private TextField AppVinti171; // Value injected by FXMLLoader
+    private TextField txtAppVinti171; // Value injected by FXMLLoader
 
     @FXML // fx:id="PercAppVinti161"
-    private TextField PercAppVinti161; // Value injected by FXMLLoader
+    private TextField txtPercAppVinti161; // Value injected by FXMLLoader
 
     @FXML // fx:id="PercAppVinti171"
-    private TextField PercAppVinti171; // Value injected by FXMLLoader
+    private TextField txtPercAppVinti171; // Value injected by FXMLLoader
 
     @FXML // fx:id="FattAppalti161"
-    private TextField FattAppalti161; // Value injected by FXMLLoader
+    private TextField txtFattAppalti161; // Value injected by FXMLLoader
 
     @FXML // fx:id="ValorAppaltInter161"
-    private TextField ValorAppaltInter161; // Value injected by FXMLLoader
+    private TextField txtValorAppaltInter161; // Value injected by FXMLLoader
 
     @FXML // fx:id="FattAppalti171"
-    private TextField FattAppalti171; // Value injected by FXMLLoader
+    private TextField txtFattAppalti171; // Value injected by FXMLLoader
 
     @FXML // fx:id="AppVinti181"
-    private TextField AppVinti181; // Value injected by FXMLLoader
+    private TextField txtAppVinti181; // Value injected by FXMLLoader
 
     @FXML // fx:id="PercAppVinti181"
-    private TextField PercAppVinti181; // Value injected by FXMLLoader
+    private TextField txtPercAppVinti181; // Value injected by FXMLLoader
 
     @FXML // fx:id="FattAppalti181"
-    private TextField FattAppalti181; // Value injected by FXMLLoader
+    private TextField txtFattAppalti181; // Value injected by FXMLLoader
 
     @FXML // fx:id="ValorAppaltInter171"
-    private TextField ValorAppaltInter171; // Value injected by FXMLLoader
+    private TextField txtValorAppaltInter171; // Value injected by FXMLLoader
 
     @FXML // fx:id="ValorAppaltInter181"
-    private TextField ValorAppaltInter181; // Value injected by FXMLLoader
+    private TextField txtValorAppaltInter181; // Value injected by FXMLLoader
 
     @FXML // fx:id="lblAnnoProgett"
     private Label lblAnnoProgett; // Value injected by FXMLLoader
@@ -962,10 +964,14 @@ public class ComparaController {
 
     Model model;
     
+    /*
+     * Il metodo set setta come devono essere compilati i campi all'apertura della scena "Compara"
+     */
     public void setModel(Model model) {
     	this.model = model;
     	Azienda azienda = model.getAzienda();
     	Azienda competitor = model.getCompetitor();
+    	
     	
     	Bilancio bilancioAz2016 = model.getBilancioAziendaAnno(azienda, 2016);
     	Bilancio bilancioAz2017 = model.getBilancioAziendaAnno(azienda, 2017);
@@ -979,6 +985,9 @@ public class ComparaController {
     	lblAziendaComp.setText(azienda.getNomeAzienda());
     	btnCompetitorComp.setText(competitor.getNomeAzienda());
     	
+        /*
+         * Il blocco seguente compila la scena "Compara" con i dati del bilancio
+         */
     	txtfatturato16.setText(String.valueOf(bilancioAz2016.getRicavi()));
     	txtVA16.setText(String.valueOf(bilancioAz2016.getValoreAggiunto()));
     	txtMOL16.setText(String.valueOf(bilancioAz2016.getMOL()));
@@ -1158,7 +1167,134 @@ public class ComparaController {
    		txtDurataMedCrediti181.setText(String.valueOf(bilancioComp2018.getDurataMediaCrediti()));
    		txtDurataMedDebiti181.setText(String.valueOf(bilancioComp2018.getDurataMediaDebiti()));
    		txtInvestimentiRD181.setText(String.valueOf(bilancioComp2018.getInvestimentiReD()));
-//    	Bilancio bilancioAz2016 = model.getRicaviAziendaAnnoProva(azienda, 2016);
+
+   		/*
+   		 * Il blocco seguente compila la sezione riguardante gli appalti della scena "Compara"
+   		 */
+   		List<Appalto> appaltiAzienda = model.getAppaltiAzienda(azienda);
+   		List<Appalto> appaltiCompetitor = model.getAppaltiAzienda(competitor);
+   		
+   		int vinti16 = 0;
+	   	int vinti17 = 0;
+	   	int vinti18 = 0;
+	   	int totAzienda16 = 0;
+	   	int totAzienda17 = 0;
+	   	int totAzienda18 = 0;
+	   	double totValoreAzienda16 = 0;
+		double totValoreAzienda17 = 0;
+		double totValoreAzienda18 = 0;
+		double valoreRilievo = 20000;
+		int valoreRilievoAzienda16=0;
+		int valoreRilievoAzienda17=0;
+		int valoreRilievoAzienda18=0;
+		
+		
+   		for (Appalto appalto : appaltiAzienda) {
+   			if(appalto.getDataScadenza().endsWith("16") ) {
+   				totAzienda16++;
+   				if(appalto.getEsito().compareTo("vinto")==0) {
+   					vinti16++;
+   					totValoreAzienda16+=appalto.getValoreContratto();
+   					if(appalto.getValoreContratto()>valoreRilievo) {
+   						valoreRilievoAzienda16++;
+   					}
+   				}
+   			}
+   			if(appalto.getDataScadenza().endsWith("17") ) {
+   				totAzienda17++;
+   				if(appalto.getEsito().compareTo("vinto")==0) {
+   					vinti17++;
+   					totValoreAzienda17+=appalto.getValoreContratto();
+   					if(appalto.getValoreContratto()>valoreRilievo) {
+   						valoreRilievoAzienda17++;
+   					}
+   				}
+   			}
+   			if(appalto.getDataScadenza().endsWith("18")){
+   				totAzienda18++;
+   				if(appalto.getEsito().compareTo("vinto")==0) {
+   					vinti18++;
+   					totValoreAzienda18+=appalto.getValoreContratto();
+   					if(appalto.getValoreContratto()>valoreRilievo) {
+   						valoreRilievoAzienda18++;
+   					}
+   				}
+   			}
+   		}
+		txtAppVinti16.setText(String.valueOf(vinti16));
+		txtAppVinti17.setText(String.valueOf(vinti17));
+   		txtAppVinti18.setText(String.valueOf(vinti18));
+   		txtPercAppVinti16.setText(String.valueOf((double)vinti16/totAzienda16));
+   		txtPercAppVinti17.setText(String.valueOf((double)vinti17/totAzienda17));
+   		txtPercAppVinti18.setText(String.valueOf((double)vinti18/totAzienda18));
+   		txtFattAppalti16.setText(String.valueOf(totValoreAzienda16));
+   		txtFattAppalti17.setText(String.valueOf(totValoreAzienda17));
+   		txtFattAppalti18.setText(String.valueOf(totValoreAzienda18));
+   		txtValorAppaltInter16.setText(String.valueOf(valoreRilievoAzienda16));
+   		txtValorAppaltInter17.setText(String.valueOf(valoreRilievoAzienda17));
+   		txtValorAppaltInter18.setText(String.valueOf(valoreRilievoAzienda18));
+
+
+   		int vintiCompetitor16 = 0;
+	   	int vintiCompetitor17 = 0;
+	   	int vintiCompetitor18 = 0;
+	   	int totCompetitor16 = 0;
+	   	int totCompetitor17 = 0;
+	   	int totCompetitor18 = 0;
+	   	double totValoreCompetitor16 = 0;
+		double totValoreCompetitor17 = 0;
+		double totValoreCompetitor18 = 0;
+		int valoreRilievoCompetitor16=0;
+		int valoreRilievoCompetitor17=0;
+		int valoreRilievoCompetitor18=0;
+		
+   		for (Appalto appalto : appaltiCompetitor) {
+   			if(appalto.getDataScadenza().endsWith("16") ) {
+   				totCompetitor16++;
+   				if(appalto.getEsito().compareTo("vinto")==0) {
+   					totValoreCompetitor16+= appalto.getValoreContratto();
+   					vintiCompetitor16++;
+   					if(appalto.getValoreContratto()>valoreRilievo) {
+   						valoreRilievoCompetitor16++;
+   					}
+   				}
+   			}
+   			if(appalto.getDataScadenza().endsWith("17") ) {
+   				totCompetitor17++;
+   				if(appalto.getEsito().compareTo("vinto")==0) {
+   					totValoreCompetitor17+= appalto.getValoreContratto();
+   					vintiCompetitor17++;
+   					if(appalto.getValoreContratto()>valoreRilievo) {
+   						valoreRilievoCompetitor17++;
+   					}
+   				}
+   			}
+   			if(appalto.getDataScadenza().endsWith("18")){
+   				totCompetitor18++;
+   				if(appalto.getEsito().compareTo("vinto")==0) {
+   					totValoreCompetitor18+= appalto.getValoreContratto();
+   					vintiCompetitor18++;
+   					if(appalto.getValoreContratto()>valoreRilievo) {
+   						valoreRilievoCompetitor18++;
+   					}
+   				}
+   			}
+   		}
+   		txtAppVinti161.setText(String.valueOf(vintiCompetitor16));
+   		txtAppVinti171.setText(String.valueOf(vintiCompetitor17));
+   		txtAppVinti181.setText(String.valueOf(vintiCompetitor18));
+   		txtPercAppVinti161.setText(String.valueOf((double)vintiCompetitor16/totCompetitor16));
+   		txtPercAppVinti171.setText(String.valueOf((double)vintiCompetitor17/totCompetitor17));
+   		txtPercAppVinti181.setText(String.valueOf((double)vintiCompetitor18/totCompetitor18));
+   		txtFattAppalti161.setText(String.valueOf(totValoreCompetitor16));
+   		txtFattAppalti171.setText(String.valueOf(totValoreCompetitor17));
+   		txtFattAppalti181.setText(String.valueOf(totValoreCompetitor18));
+   		txtValorAppaltInter161.setText(String.valueOf(valoreRilievoCompetitor16));
+   		txtValorAppaltInter171.setText(String.valueOf(valoreRilievoCompetitor17));
+   		txtValorAppaltInter181.setText(String.valueOf(valoreRilievoCompetitor18));
+   		
+   		
+   		
     	
     }
     
@@ -1462,17 +1598,17 @@ public class ComparaController {
         assert txtValorAppaltInter17 != null : "fx:id=\"txtValorAppaltInter17\" was not injected: check your FXML file 'Compara.fxml'.";
         assert txtValorAppaltInter18 != null : "fx:id=\"txtValorAppaltInter18\" was not injected: check your FXML file 'Compara.fxml'.";
         assert txtAppVinti161 != null : "fx:id=\"txtAppVinti161\" was not injected: check your FXML file 'Compara.fxml'.";
-        assert AppVinti171 != null : "fx:id=\"AppVinti171\" was not injected: check your FXML file 'Compara.fxml'.";
-        assert PercAppVinti161 != null : "fx:id=\"PercAppVinti161\" was not injected: check your FXML file 'Compara.fxml'.";
-        assert PercAppVinti171 != null : "fx:id=\"PercAppVinti171\" was not injected: check your FXML file 'Compara.fxml'.";
-        assert FattAppalti161 != null : "fx:id=\"FattAppalti161\" was not injected: check your FXML file 'Compara.fxml'.";
-        assert ValorAppaltInter161 != null : "fx:id=\"ValorAppaltInter161\" was not injected: check your FXML file 'Compara.fxml'.";
-        assert FattAppalti171 != null : "fx:id=\"FattAppalti171\" was not injected: check your FXML file 'Compara.fxml'.";
-        assert AppVinti181 != null : "fx:id=\"AppVinti181\" was not injected: check your FXML file 'Compara.fxml'.";
-        assert PercAppVinti181 != null : "fx:id=\"PercAppVinti181\" was not injected: check your FXML file 'Compara.fxml'.";
-        assert FattAppalti181 != null : "fx:id=\"FattAppalti181\" was not injected: check your FXML file 'Compara.fxml'.";
-        assert ValorAppaltInter171 != null : "fx:id=\"ValorAppaltInter171\" was not injected: check your FXML file 'Compara.fxml'.";
-        assert ValorAppaltInter181 != null : "fx:id=\"ValorAppaltInter181\" was not injected: check your FXML file 'Compara.fxml'.";
+        assert txtAppVinti171 != null : "fx:id=\"AppVinti171\" was not injected: check your FXML file 'Compara.fxml'.";
+        assert txtPercAppVinti161 != null : "fx:id=\"PercAppVinti161\" was not injected: check your FXML file 'Compara.fxml'.";
+        assert txtPercAppVinti171 != null : "fx:id=\"PercAppVinti171\" was not injected: check your FXML file 'Compara.fxml'.";
+        assert txtFattAppalti161 != null : "fx:id=\"FattAppalti161\" was not injected: check your FXML file 'Compara.fxml'.";
+        assert txtValorAppaltInter161 != null : "fx:id=\"ValorAppaltInter161\" was not injected: check your FXML file 'Compara.fxml'.";
+        assert txtFattAppalti171 != null : "fx:id=\"FattAppalti171\" was not injected: check your FXML file 'Compara.fxml'.";
+        assert txtAppVinti181 != null : "fx:id=\"AppVinti181\" was not injected: check your FXML file 'Compara.fxml'.";
+        assert txtPercAppVinti181 != null : "fx:id=\"PercAppVinti181\" was not injected: check your FXML file 'Compara.fxml'.";
+        assert txtFattAppalti181 != null : "fx:id=\"FattAppalti181\" was not injected: check your FXML file 'Compara.fxml'.";
+        assert txtValorAppaltInter171 != null : "fx:id=\"ValorAppaltInter171\" was not injected: check your FXML file 'Compara.fxml'.";
+        assert txtValorAppaltInter181 != null : "fx:id=\"ValorAppaltInter181\" was not injected: check your FXML file 'Compara.fxml'.";
         assert lblAnnoProgett != null : "fx:id=\"lblAnnoProgett\" was not injected: check your FXML file 'Compara.fxml'.";
         assert lblCostoTotProg != null : "fx:id=\"lblCostoTotProg\" was not injected: check your FXML file 'Compara.fxml'.";
         assert lblNumProgett != null : "fx:id=\"lblNumProgett\" was not injected: check your FXML file 'Compara.fxml'.";

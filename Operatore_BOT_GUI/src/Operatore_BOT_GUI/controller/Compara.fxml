@@ -574,22 +574,22 @@
                               <Label prefHeight="18.0" prefWidth="103.0" text="Appalti vinti" GridPane.rowIndex="1" />
                               <Label prefHeight="54.0" prefWidth="176.0" text="\% Appalti vinti" GridPane.rowIndex="2" />
                               <Label prefHeight="18.0" prefWidth="99.0" text="Totale Contratti" GridPane.rowIndex="3" />
-                              <Label text="Label" GridPane.rowIndex="4" />
+                              <Label text="Totale contratti di rilievo" GridPane.rowIndex="4" />
                               <TextField style="-fx-background-color: transparent;" text="2016" GridPane.columnIndex="1" />
                               <TextField fx:id="txtAppVinti161" style="-fx-background-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <TextField style="-fx-background-color: transparent;" text="2017" GridPane.columnIndex="2" />
-                              <TextField fx:id="AppVinti171" style="-fx-background-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <TextField fx:id="txtAppVinti171" style="-fx-background-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                               <TextField style="-fx-background-color: transparent;" text="2018" GridPane.columnIndex="3" />
-                              <TextField fx:id="PercAppVinti161" style="-fx-background-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <TextField fx:id="PercAppVinti171" style="-fx-background-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                              <TextField fx:id="FattAppalti161" style="-fx-background-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <TextField fx:id="ValorAppaltInter161" style="-fx-background-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <TextField fx:id="FattAppalti171" style="-fx-background-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                              <TextField fx:id="AppVinti181" style="-fx-background-color: transparent;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                              <TextField fx:id="PercAppVinti181" style="-fx-background-color: transparent;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                              <TextField fx:id="FattAppalti181" style="-fx-background-color: transparent;" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                              <TextField fx:id="ValorAppaltInter171" style="-fx-background-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                              <TextField fx:id="ValorAppaltInter181" style="-fx-background-color: transparent;" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                              <TextField fx:id="txtPercAppVinti161" style="-fx-background-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField fx:id="txtPercAppVinti171" style="-fx-background-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <TextField fx:id="txtFattAppalti161" style="-fx-background-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField fx:id="txtValorAppaltInter161" style="-fx-background-color: transparent;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <TextField fx:id="txtFattAppalti171" style="-fx-background-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                              <TextField fx:id="txtAppVinti181" style="-fx-background-color: transparent;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <TextField fx:id="txtPercAppVinti181" style="-fx-background-color: transparent;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                              <TextField fx:id="txtFattAppalti181" style="-fx-background-color: transparent;" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                              <TextField fx:id="txtValorAppaltInter171" style="-fx-background-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                              <TextField fx:id="txtValorAppaltInter181" style="-fx-background-color: transparent;" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                            </children>
                            <HBox.margin>
                               <Insets left="200.0" />
