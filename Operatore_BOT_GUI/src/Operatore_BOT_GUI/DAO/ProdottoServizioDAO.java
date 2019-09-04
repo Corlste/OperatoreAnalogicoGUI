@@ -8,32 +8,31 @@ import java.util.LinkedList;
 import java.util.List;
 
 import Operatore_BOT_GUI.model.Azienda;
-import Operatore_BOT_GUI.model.Brevetto;
+import Operatore_BOT_GUI.model.ProdottoServizio;
 
-public class BrevettoDAO {
-	
-public List<Brevetto> getBrevettiAzienda (Azienda az) {
+public class ProdottoServizioDAO {
+
+public List<ProdottoServizio> getProdottiServiziAzienda (Azienda az) {
 		
 		String partitaIVA = az.getPartitaIVA();
-		final String sqlBrevettiAzienda = "SELECT * FROM brevetti WHERE p_iva=? ;";
-		List<Brevetto> listBrevetti = new LinkedList<Brevetto>();
+		final String sqlProdottiServiziAzienda = "SELECT * FROM prodotti_servizi WHERE p_iva=? ;";
+		List<ProdottoServizio> prodottiServizi = new LinkedList<ProdottoServizio>();
 		try {
 			Connection conn = DBConnect.getConnection();
-			PreparedStatement st = conn.prepareStatement(sqlBrevettiAzienda);
+			PreparedStatement st = conn.prepareStatement(sqlProdottiServiziAzienda);
 			st.setString(1, partitaIVA);
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
-				Brevetto b = new Brevetto(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
-				listBrevetti.add(b);
+				ProdottoServizio ps = new ProdottoServizio(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+				prodottiServizi.add(ps);
 			}
 			st.close();
 			conn.close();
-			return listBrevetti;
+			return prodottiServizi;
 		}catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Errore DB");
 		}
 	}
-
 
 }

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane prefHeight="1558.0" prefWidth="2006.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Operatore_BOT_GUI.controller.InfoAziendaController">
+   <content>
+      <AnchorPane prefHeight="1302.0" prefWidth="1992.0">
+         <children>
+            <HBox layoutX="-1.0" layoutY="7.0" prefHeight="1547.0" prefWidth="1992.0">
+               <children>
+                  <VBox prefHeight="1512.0" prefWidth="1992.0">
+                     <children>
+                        <HBox prefHeight="125.0" prefWidth="1992.0">
+                           <children>
+                              <ImageView fx:id="imgComparaangAz" fitHeight="126.0" fitWidth="227.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@GISP/TW.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <Label fx:id="lblAziendaCompAzinf" prefHeight="40.0" prefWidth="97.0" text="Azienda">
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                                 <HBox.margin>
+                                    <Insets left="400.0" top="50.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="603.0" prefWidth="1889.0">
+                           <children>
+                              <VBox prefHeight="930.0" prefWidth="135.0">
+                                 <children>
+                                    <Button fx:id="btnInfoAzAz" mnemonicParsing="false" onAction="#doEstraiInfoAzienda" prefHeight="26.0" prefWidth="120.0" text="Informazioni azienda" />
+                                    <Button fx:id="btnIndBilancioAzInf" mnemonicParsing="false" onAction="#doApriBilancio" text="Indicatore Bilancio">
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </padding>
+                                    </Button>
+                                    <Button fx:id="btnIndBrevettiAzBrInf" mnemonicParsing="false" onAction="#doEstraiBrevetti" prefHeight="38.0" prefWidth="87.0" text="Brevetti">
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </padding>
+                                    </Button>
+                                    <Button fx:id="btnIndAppaltiAzBrInf" mnemonicParsing="false" onAction="#doEstraiAppalti" prefHeight="38.0" prefWidth="117.0" text="Appalti">
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </padding>
+                                    </Button>
+                                    <Button fx:id="btnIndProgettiAzBrinf" mnemonicParsing="false" onAction="#doEstraiProgetti" onDragDetected="#Inf" prefHeight="38.0" prefWidth="117.0" text="Progetti">
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </padding>
+                                    </Button>
+                                    <Button fx:id="btnIndProdottiAzBrInf" mnemonicParsing="false" onAction="#doEstraiProdotti" prefHeight="38.0" prefWidth="117.0" text="Prodotti&amp;Servizi">
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </padding>
+                                    </Button>
+                                    <Button fx:id="btnIndArticoliAzBrInf" mnemonicParsing="false" onAction="#doEstraiArticoli" prefHeight="38.0" prefWidth="102.0" text="Articoli">
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </padding>
+                                    </Button>
+                                    <Button fx:id="btnIndNewsAzBrInf" mnemonicParsing="false" onAction="#doEstraiNews" prefHeight="38.0" prefWidth="117.0" text="News">
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </padding>
+                                    </Button>
+                                    <Button fx:id="btnTornaClassificaBrInf" mnemonicParsing="false" onAction="#doTornaclassifica" prefHeight="38.0" prefWidth="94.0" text="Classifica" />
+                                    <ChoiceBox fx:id="cbxAltraAziendaBrInf" prefHeight="26.0" prefWidth="116.0" />
+                                 </children>
+                              </VBox>
+                              <GridPane fx:id="lblCap" prefHeight="603.0" prefWidth="1323.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="626.7999267578125" minWidth="10.0" prefWidth="177.4000274658203" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="1260.5999847412108" minWidth="10.0" prefWidth="1241.3999725341796" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints maxHeight="117.26669156551361" minHeight="0.0" prefHeight="28.999996948242188" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="342.8" minHeight="0.0" prefHeight="29.19999389648438" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="428.6" minHeight="0.0" prefHeight="26.00000610351563" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="509.19999999999993" minHeight="0.0" prefHeight="27.199996948242188" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="585.0" minHeight="0.0" prefHeight="25.60000457763671" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="656.0" minHeight="0.0" prefHeight="25.80000000000001" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="722.4" minHeight="0.0" prefHeight="29.199987792968756" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="940.0" minHeight="10.0" prefHeight="311.1999755859375" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="763.5998840332031" minHeight="0.0" prefHeight="25.60002441406249" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="821.4000000000001" minHeight="0.0" prefHeight="26.200000000000045" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="865.5998596191407" minHeight="0.0" prefHeight="24.600048828124955" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="908.3999084472657" minHeight="10.0" prefHeight="29.400048828125023" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label fx:id="lblPIVAInf" prefHeight="21.0" prefWidth="223.0" text="Partita IVA" />
+                                    <Label fx:id="lblIndirizzo" prefHeight="19.0" prefWidth="228.0" text="Indirizzo" GridPane.rowIndex="1" />
+                                    <Label text="CAP" GridPane.rowIndex="2" />
+                                    <Label fx:id="lblProvincia" text="Provincia" GridPane.rowIndex="3" />
+                                    <Label fx:id="lblRegione" text="Regione" GridPane.rowIndex="4" />
+                                    <Label fx:id="lblCodAtecoInf" text="Codice Ateco" GridPane.rowIndex="5" />
+                                    <Label fx:id="lblStartUp" prefHeight="16.0" prefWidth="146.0" text="Start up" GridPane.rowIndex="6" />
+                                    <Label fx:id="lblDescrAz" text="Descrizione azienda" GridPane.rowIndex="7" />
+                                    <Label fx:id="lblAppHold" text="Appartiene ad holding" GridPane.rowIndex="8" />
+                                    <Label fx:id="lblEmail" text="Email" GridPane.rowIndex="9" />
+                                    <Label fx:id="lblTelefono" text="Telefono" GridPane.rowIndex="10" />
+                                    <Label fx:id="lblSitoWeb" text="Sito web" GridPane.rowIndex="11" />
+                                    <TextField fx:id="txtPivaInf" GridPane.columnIndex="1" />
+                                    <TextField fx:id="txtIndirizzo" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="txtCap" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextField fx:id="txtProvincia" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField fx:id="txtRegione" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <TextField fx:id="txtCodatecInf" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <TextField fx:id="txtStartUp" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                    <TextField fx:id="txtAppHold" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                    <TextField fx:id="txtEmail" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                                    <TextField fx:id="txtTele" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                                    <TextArea fx:id="txtDescrAzie" prefHeight="311.0" prefWidth="1161.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                    <TextField fx:id="txtSitoWeb" onAction="#doApriLink" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets left="40.0" />
+                                 </HBox.margin>
+                              </GridPane>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets top="30.0" />
+                           </VBox.margin>
+                           <children>
+                              <Button fx:id="btnFacebook" mnemonicParsing="false" onAction="#doApriFacebook" style="-fx-background-color: blue;" text="Facebook" />
+                              <Button fx:id="btnTwitter" mnemonicParsing="false" onAction="#doApriTwitter" style="-fx-background-color: green;" text="Twitter" />
+                              <Button fx:id="btnLinkdin" mnemonicParsing="false" onAction="#doApriLinkedin" text="Linkedin" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </content>
+</ScrollPane>

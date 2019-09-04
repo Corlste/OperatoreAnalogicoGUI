@@ -8,32 +8,31 @@ import java.util.LinkedList;
 import java.util.List;
 
 import Operatore_BOT_GUI.model.Azienda;
-import Operatore_BOT_GUI.model.Brevetto;
+import Operatore_BOT_GUI.model.News;
 
-public class BrevettoDAO {
+public class NewsDAO {
 	
-public List<Brevetto> getBrevettiAzienda (Azienda az) {
+public List<News> getNewsAzienda (Azienda az) {
 		
 		String partitaIVA = az.getPartitaIVA();
-		final String sqlBrevettiAzienda = "SELECT * FROM brevetti WHERE p_iva=? ;";
-		List<Brevetto> listBrevetti = new LinkedList<Brevetto>();
+		final String sqlNewsAzienda = "SELECT * FROM progetti WHERE p_iva=? ;";
+		List<News> listNews = new LinkedList<News>();
 		try {
 			Connection conn = DBConnect.getConnection();
-			PreparedStatement st = conn.prepareStatement(sqlBrevettiAzienda);
+			PreparedStatement st = conn.prepareStatement(sqlNewsAzienda);
 			st.setString(1, partitaIVA);
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
-				Brevetto b = new Brevetto(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
-				listBrevetti.add(b);
+				News n = new News(rs.getString(1), rs.getLong(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
+				listNews.add(n);
 			}
 			st.close();
 			conn.close();
-			return listBrevetti;
+			return listNews;
 		}catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Errore DB");
 		}
 	}
-
 
 }

@@ -120,7 +120,12 @@ public class homeController {
     }
 
     @FXML
-    void doBrevetti(ActionEvent event) {
+    void doBrevetti(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("AziendaBrevetto.fxml"));
+		ScrollPane root = (ScrollPane)loader.load();
+		AziendaBrevettoController controller = loader.getController();
+		
+    	
 
     }
 

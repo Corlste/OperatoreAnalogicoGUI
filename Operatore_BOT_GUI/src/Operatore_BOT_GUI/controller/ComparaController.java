@@ -14,6 +14,7 @@ import Operatore_BOT_GUI.model.Appalto;
 import Operatore_BOT_GUI.model.Azienda;
 import Operatore_BOT_GUI.model.Bilancio;
 import Operatore_BOT_GUI.model.Model;
+import Operatore_BOT_GUI.model.Progetto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -1294,8 +1295,17 @@ public class ComparaController {
    		txtValorAppaltInter181.setText(String.valueOf(valoreRilievoCompetitor18));
    		
    		
-   		
+   		/*
+   		 * nella sezione seguente viene compilata la parte relativa ai progetti della scena "Compara"
+   		 */
     	
+   		List<Progetto> progettiAzienda = model.getProgettiAzienda(azienda);
+   		List<Progetto> progettiCompetitor = model.getProgettiAzienda(competitor);
+   		
+   		for (Progetto progetto: progettiAzienda) {
+   			
+   		}
+   		
     }
     
     @FXML

@@ -3,8 +3,13 @@ package Operatore_BOT_GUI.model;
 import java.util.*;
 
 import Operatore_BOT_GUI.DAO.AppaltoDAO;
+import Operatore_BOT_GUI.DAO.ArticoloDAO;
 import Operatore_BOT_GUI.DAO.AziendaDAO;
 import Operatore_BOT_GUI.DAO.BilancioDAO;
+import Operatore_BOT_GUI.DAO.BrevettoDAO;
+import Operatore_BOT_GUI.DAO.NewsDAO;
+import Operatore_BOT_GUI.DAO.ProdottoServizioDAO;
+import Operatore_BOT_GUI.DAO.ProgettoDAO;
 
 public class Model {
 
@@ -73,6 +78,38 @@ public class Model {
 		AppaltoDAO appaltoDAO = new AppaltoDAO();
 		List<Appalto> appalti = appaltoDAO.getAppaltiAzienda(azienda);
 		return appalti;
+	}
+	
+	public List<Progetto> getProgettiAzienda(Azienda azienda){
+		ProgettoDAO progettoDAO = new ProgettoDAO();
+		List<Progetto> progetti = progettoDAO.getProgettiAzienda(azienda);
+		return progetti;
+	}
+	
+	public List<Articolo> getArticoliAzienda(Azienda azienda){
+		ArticoloDAO articoloDAO = new ArticoloDAO();
+		List<Articolo> articoli = articoloDAO.getArticoliAzienda(azienda);
+		return articoli;
+		
+	}
+	
+	public List<News> getNewsAzienda (Azienda azienda){
+		NewsDAO newsDAO = new NewsDAO();
+		List<News> listNews = newsDAO.getNewsAzienda(azienda);
+		return listNews;
+	}
+	
+	
+	public List<ProdottoServizio> getProdottiServizi (Azienda azienda){
+		ProdottoServizioDAO prodservDAO = new ProdottoServizioDAO();
+		List<ProdottoServizio> prodServ = prodservDAO.getProdottiServiziAzienda(azienda);
+		return prodServ;
+	}
+	
+	public List<Brevetto> getBrevettiAzienda (Azienda azienda){
+		BrevettoDAO brevettoDAO = new BrevettoDAO();
+		List<Brevetto> brevetti = brevettoDAO.getBrevettiAzienda(azienda);
+		return brevetti;
 	}
 	
 	
