@@ -2,7 +2,9 @@ package Operatore_BOT_GUI.controller;
 
 	import java.net.URL;
 	import java.util.ResourceBundle;
-	import javafx.event.ActionEvent;
+
+import Operatore_BOT_GUI.model.Model;
+import javafx.event.ActionEvent;
 	import javafx.fxml.FXML;
 	import javafx.scene.control.Button;
 	import javafx.scene.control.ChoiceBox;
@@ -100,6 +102,12 @@ package Operatore_BOT_GUI.controller;
 	    @FXML // fx:id="txtTipolPreSer2"
 	    private TextArea txtTipolPreSer2; // Value injected by FXMLLoader
 
+	    Model model;
+	    
+	    public void setModel(Model model) {
+	    	this.model = model;
+	    }
+	    
 	    @FXML
 	    void doApriBilancio(ActionEvent event) {
 

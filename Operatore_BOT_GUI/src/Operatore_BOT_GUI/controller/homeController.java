@@ -105,17 +105,44 @@ public class homeController {
     }
 
     @FXML
-    void doAppalti(ActionEvent event) {
+    void doAppalti(ActionEvent event) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Appalti.fxml"));
+		ScrollPane root = (ScrollPane)loader.load();
+		AppaltiController controller = loader.getController();
+		controller.setModel(model);
+    	
+		Scene goToHome = new Scene(root);
+    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	newStage.setScene(goToHome);
+    	newStage.show();
 
     }
 
     @FXML
-    void doArticoli(ActionEvent event) {
+    void doArticoli(ActionEvent event) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Articoli.fxml"));
+		ScrollPane root = (ScrollPane)loader.load();
+		ArticoliController controller = loader.getController();
+		controller.setModel(model);
+    	
+		Scene goToHome = new Scene(root);
+    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	newStage.setScene(goToHome);
+    	newStage.show();
 
     }
 
     @FXML
-    void doBilancio(ActionEvent event) {
+    void doBilancio(ActionEvent event) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("IndiciBilancio.fxml"));
+		ScrollPane root = (ScrollPane)loader.load();
+		IndiciBilancioController controller = loader.getController();
+		controller.setModel(model);
+    	
+		Scene goToHome = new Scene(root);
+    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	newStage.setScene(goToHome);
+    	newStage.show();
 
     }
 
@@ -124,8 +151,12 @@ public class homeController {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("AziendaBrevetto.fxml"));
 		ScrollPane root = (ScrollPane)loader.load();
 		AziendaBrevettoController controller = loader.getController();
-		
+		controller.setModel(model);
     	
+		Scene goToHome = new Scene(root);
+    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	newStage.setScene(goToHome);
+    	newStage.show();
 
     }
 
@@ -133,8 +164,6 @@ public class homeController {
     void doCompara1(ActionEvent event) throws IOException {
     	
     	Azienda competitor = aziendeCompetitor.get(0);
-    	System.out.println(competitor);
-    	
     	model.setCompetitor(competitor);
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Compara.fxml"));
 		ScrollPane root = (ScrollPane)loader.load();
@@ -232,16 +261,43 @@ public class homeController {
 
     @FXML
     void doNews(ActionEvent event) {
+//    	FXMLLoader loader = new FXMLLoader(getClass().getResource("News.fxml"));
+//		ScrollPane root = (ScrollPane)loader.load();
+//		NewsController controller = loader.getController();
+//		controller.setModel(model);
+//    	
+//		Scene goToHome = new Scene(root);
+//    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+//    	newStage.setScene(goToHome);
+//    	newStage.show();
+    	
+    }
+
+    @FXML
+    void doProdotti(ActionEvent event) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("ProdottiServizi.fxml"));
+		ScrollPane root = (ScrollPane)loader.load();
+		ProdottiServiziController controller = loader.getController();
+		controller.setModel(model);
+    	
+		Scene goToHome = new Scene(root);
+    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	newStage.setScene(goToHome);
+    	newStage.show();
 
     }
 
     @FXML
-    void doProdotti(ActionEvent event) {
-
-    }
-
-    @FXML
-    void doProgetti(ActionEvent event) {
+    void doProgetti(ActionEvent event) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Progetti.fxml"));
+		ScrollPane root = (ScrollPane)loader.load();
+		ProgettiController controller = loader.getController();
+		controller.setModel(model);
+    	
+		Scene goToHome = new Scene(root);
+    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	newStage.setScene(goToHome);
+    	newStage.show();
 
     }
 
