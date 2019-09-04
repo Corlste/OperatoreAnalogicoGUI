@@ -23,6 +23,27 @@ public class Model {
 		this.aziende = dao.getTutteLeAziende();
 	}
 
+	public List<Azienda> ordineAziende(){
+		Map<String,Integer> variabili = new HashMap<String,Integer>();
+		for (Azienda azi : aziende) {
+			variabili.put(azi.getPartitaIVA(), 0);
+		}
+		
+		BilancioDAO bilancioDAO = new BilancioDAO();
+		List<Bilancio> bilanci = bilancioDAO.getTuttiIBilanci();
+		List<Azienda> aziendeOrdinate = new LinkedList<Azienda>();
+		for (Azienda a: aziende) {
+			for (Azienda b: aziende) {
+				
+				int punteggio = variabili.get(a.getPartitaIVA()) +3 ;
+				variabili.replace(a.getPartitaIVA(), punteggio);
+				
+			}
+		}
+		return aziendeOrdinate;
+		
+		
+	}
 	
 	public Azienda getAzienda() {
 		return azienda;
