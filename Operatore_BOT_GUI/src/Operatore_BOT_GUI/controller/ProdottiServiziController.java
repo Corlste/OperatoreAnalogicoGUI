@@ -2,8 +2,11 @@ package Operatore_BOT_GUI.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import Operatore_BOT_GUI.model.Articolo;
+import Operatore_BOT_GUI.model.Azienda;
 import Operatore_BOT_GUI.model.Model;
 import Operatore_BOT_GUI.model.ProdottoServizio;
 import javafx.event.ActionEvent;
@@ -23,13 +26,7 @@ import javafx.stage.Stage;
 
 public class ProdottiServiziController {
 	
-	 Model model;
-	    
-	    public void setModel(Model model) {
-	    	this.model = model;
-	    }
-
-    @FXML // ResourceBundle that was given to the FXMLLoader
+	@FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 
     @FXML // URL location of the FXML file that was given to the FXMLLoader
@@ -41,11 +38,8 @@ public class ProdottiServiziController {
     @FXML // fx:id="lblAziendaCompPreSer"
     private Label lblAziendaCompPreSer; // Value injected by FXMLLoader
 
-    @FXML // fx:id="cmbScegliProdotti"
-    private ComboBox<ProdottoServizio> cmbScegliProdotti; // Value injected by FXMLLoader
-
     @FXML // fx:id="cmbScegliProdotti1"
-    private ComboBox<?> cmbScegliProdotti1; // Value injected by FXMLLoader
+    private ComboBox<ProdottoServizio> cmbScegliProdotti1; // Value injected by FXMLLoader
 
     @FXML // fx:id="btnInfoAzPreSe"
     private Button btnInfoAzPreSe; // Value injected by FXMLLoader
@@ -75,7 +69,7 @@ public class ProdottiServiziController {
     private Button btnTornaClassificaPreSe; // Value injected by FXMLLoader
 
     @FXML // fx:id="cmbAltraAziendaPreSe"
-    private ComboBox<?> cmbAltraAziendaPreSe; // Value injected by FXMLLoader
+    private ComboBox<Azienda> cmbAltraAziendaPreSe; // Value injected by FXMLLoader
 
     @FXML // fx:id="lblDescrizionePReSe"
     private Label lblDescrizionePReSe; // Value injected by FXMLLoader
@@ -91,7 +85,23 @@ public class ProdottiServiziController {
 
     @FXML // fx:id="txtTipolPreSer"
     private TextArea txtTipolPreSer; // Value injected by FXMLLoader
-
+    
+    Model model;
+    private ProdottoServizio prodServ = new ProdottoServizio();
+    Azienda aziendaSel;
+    
+    public void setModel(Model model) {
+    	this.model = model;
+    	aziendaSel = model.getAziendaSelezionata();
+    	List<ProdottoServizio> prodotti = this .model.getProdottiServizi(aziendaSel);
+    	cmbScegliProdotti1.getItems().addAll(prodotti);
+    	cmbScegliProdotti1.getItems().add(0, null);
+    	lblAziendaCompPreSer.setText(aziendaSel.toString());
+    	List<Azienda> altreAz = model.getAziendeMenoSelezionata(aziendaSel);
+    	cmbAltraAziendaPreSe.getItems().addAll(altreAz);
+    	cmbAltraAziendaPreSe.getItems().add(0, null);
+    }
+    
     @FXML
     void doApriBilancio(ActionEvent event) throws IOException {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("IndiciBilancio.fxml"));
@@ -107,17 +117,27 @@ public class ProdottiServiziController {
 
     @FXML
     void doApriListaProdotti(ActionEvent event) {
-
+    	this.prodServ = cmbScegliProdotti1.getValue();
+    	txtDescriPreSer.setText(prodServ.getDescrizione());
+    	txtTipolPreSer.setText(prodServ.getTipologia());
     }
 
     @FXML
-    void doApriaListaAziende(ActionEvent event) {
-
+    void doApriaListaAziende(ActionEvent event) throws IOException {
+    	model.setAziendaSelezionata(cmbAltraAziendaPreSe.getValue());
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("ProdottiServizi.fxml"));
+		ScrollPane root = (ScrollPane)loader.load();
+		ProdottiServiziController controller = loader.getController();
+		controller.setModel(model);
+    	
+		Scene goToHome = new Scene(root);
+    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	newStage.setScene(goToHome);
+    	newStage.show();
     }
 
     @FXML
     void doEstraiAppalti(ActionEvent event) throws IOException {
-    	model.setAziendaSelezionata(model.getAzienda());
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("Appalti.fxml"));
 		ScrollPane root = (ScrollPane)loader.load();
 		AppaltiController controller = loader.getController();
@@ -221,16 +241,11 @@ public class ProdottiServiziController {
     }
     
     
-    @FXML
-    void doScegliProdotti(ActionEvent event) throws IOException {
-    	
-    }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert imgComparaangAzPreSer != null : "fx:id=\"imgComparaangAzPreSer\" was not injected: check your FXML file 'Prodotti_Azienda.fxml'.";
         assert lblAziendaCompPreSer != null : "fx:id=\"lblAziendaCompPreSer\" was not injected: check your FXML file 'Prodotti_Azienda.fxml'.";
-        assert cmbScegliProdotti != null : "fx:id=\"cmbScegliProdotti\" was not injected: check your FXML file 'Prodotti_Azienda.fxml'.";
         assert cmbScegliProdotti1 != null : "fx:id=\"cmbScegliProdotti1\" was not injected: check your FXML file 'Prodotti_Azienda.fxml'.";
         assert btnInfoAzPreSe != null : "fx:id=\"btnInfoAzPreSe\" was not injected: check your FXML file 'Prodotti_Azienda.fxml'.";
         assert btnIndBilancioAzPreSe != null : "fx:id=\"btnIndBilancioAzPreSe\" was not injected: check your FXML file 'Prodotti_Azienda.fxml'.";

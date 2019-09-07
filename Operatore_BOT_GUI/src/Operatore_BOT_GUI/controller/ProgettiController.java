@@ -2,9 +2,13 @@ package Operatore_BOT_GUI.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import Operatore_BOT_GUI.model.Articolo;
+import Operatore_BOT_GUI.model.Azienda;
 import Operatore_BOT_GUI.model.Model;
+import Operatore_BOT_GUI.model.Progetto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,11 +27,6 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class ProgettiController {
-	 Model model;
-	    
-	    public void setModel(Model model) {
-	    	this.model = model;
-	    }
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -42,7 +41,7 @@ public class ProgettiController {
     private Label lblAziendaCompAzPj; // Value injected by FXMLLoader
 
     @FXML // fx:id="cmbScegliProgetto"
-    private ComboBox<?> cmbScegliProgetto; // Value injected by FXMLLoader
+    private ComboBox<Progetto> cmbScegliProgetto; // Value injected by FXMLLoader
 
     @FXML // fx:id="btnInfoAzPr"
     private Button btnInfoAzPr; // Value injected by FXMLLoader
@@ -72,7 +71,7 @@ public class ProgettiController {
     private Button btnTornaClassificaPj; // Value injected by FXMLLoader
 
     @FXML // fx:id="cmbAltraAziendaPj"
-    private ComboBox<?> cmbAltraAziendaPj; // Value injected by FXMLLoader
+    private ComboBox<Azienda> cmbAltraAziendaPj; // Value injected by FXMLLoader
 
     @FXML // fx:id="lblFunding"
     private GridPane lblFunding; // Value injected by FXMLLoader
@@ -158,6 +157,22 @@ public class ProgettiController {
     void Pj(MouseEvent event) {
 
     }
+    
+    Model model;
+    private Progetto progetto = new Progetto();
+    Azienda aziendaSel;
+    
+    public void setModel(Model model) {
+    	this.model = model;
+    	aziendaSel = model.getAziendaSelezionata();
+    	List<Progetto> progetti = this .model.getProgettiAzienda(aziendaSel);
+    	cmbScegliProgetto.getItems().addAll(progetti);
+    	cmbScegliProgetto.getItems().add(0, null);
+    	lblAziendaCompAzPj.setText(aziendaSel.toString());
+    	List<Azienda> altreAz = model.getAziendeMenoSelezionata(aziendaSel);
+    	cmbAltraAziendaPj.getItems().addAll(altreAz);
+    	cmbAltraAziendaPj.getItems().add(0, null);
+    }
 
     @FXML
     void doApriBilancio(ActionEvent event) throws IOException {
@@ -179,17 +194,41 @@ public class ProgettiController {
 
     @FXML
     void doApriListaProgetti(ActionEvent event) {
-
+    	this.progetto = cmbScegliProgetto.getValue();
+    	
+    	txtProRcn.setText(progetto.getProjectRCN());
+    	txtStatus.setText(progetto.getStatus());
+    	txtProgrammr.setText(progetto.getProgramme());
+    	txtStartDate.setText(progetto.getStartDate());
+    	txtEndDate.setText(progetto.getEndDate());
+    	txtObjective.setText(progetto.getObjective());
+    	txtTotCostPj.setText(String.valueOf(progetto.getTotalCost()));
+    	txtEuContr.setText(String.valueOf(progetto.getEcContribution()));
+    	txtEurTotal.setText(String.valueOf(progetto.getEcContributionTotal()));
+    	txtFundingScheme.setText(progetto.getFundingScheme());
+    	Boolean coordin = progetto.isCoordinator();
+    	String coor = coordin.toString();
+    	txtCoordinator.setText(coor);
+    	txtOther.setText(progetto.getOtherParticipants());
+    	
     }
 
     @FXML
-    void doApriaListaAziende(ActionEvent event) {
-
+    void doApriaListaAziende(ActionEvent event) throws IOException {
+    	model.setAziendaSelezionata(cmbAltraAziendaPj.getValue());
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Articoli.fxml"));
+		ScrollPane root = (ScrollPane)loader.load();
+		ArticoliController controller = loader.getController();
+		controller.setModel(model);
+    	
+		Scene goToHome = new Scene(root);
+    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	newStage.setScene(goToHome);
+    	newStage.show();
     }
 
     @FXML
     void doEstraiAppalti(ActionEvent event) throws IOException {
-    	model.setAziendaSelezionata(model.getAzienda());
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("Appalti.fxml"));
 		ScrollPane root = (ScrollPane)loader.load();
 		AppaltiController controller = loader.getController();
@@ -241,16 +280,16 @@ public class ProgettiController {
     }
 
     @FXML
-    void doEstraiNews(ActionEvent event) {
-//    	FXMLLoader loader = new FXMLLoader(getClass().getResource("News.fxml"));
-//		ScrollPane root = (ScrollPane)loader.load();
-//		NewsController controller = loader.getController();
-//		controller.setModel(model);
-//    	
-//		Scene goToHome = new Scene(root);
-//    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-//    	newStage.setScene(goToHome);
-//    	newStage.show();
+    void doEstraiNews(ActionEvent event) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("News.fxml"));
+		ScrollPane root = (ScrollPane)loader.load();
+		NewsController controller = loader.getController();
+		controller.setModel(model);
+    	
+		Scene goToHome = new Scene(root);
+    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	newStage.setScene(goToHome);
+    	newStage.show();
     }
 
     @FXML

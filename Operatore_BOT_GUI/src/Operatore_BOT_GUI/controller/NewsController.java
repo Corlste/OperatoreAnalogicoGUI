@@ -3,10 +3,12 @@ package Operatore_BOT_GUI.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import Operatore_BOT_GUI.model.Azienda;
 import Operatore_BOT_GUI.model.Model;
+import Operatore_BOT_GUI.model.News;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,15 +26,7 @@ import javafx.stage.Stage;
 
 public class NewsController {
 
-	Model model;
-    
-    public void setModel(Model model) {
-    	this.model = model;
-    	Azienda aziendaSel = model.getAziendaSelezionata();
-    	lblAziendaCompNws.setText(aziendaSel.toString());
-    	
-    }
-    
+	    
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 
@@ -46,7 +40,7 @@ public class NewsController {
     private Label lblAziendaCompNws; // Value injected by FXMLLoader
 
     @FXML // fx:id="cmbNews"
-    private ComboBox<?> cmbNews; // Value injected by FXMLLoader
+    private ComboBox<News> cmbNews; // Value injected by FXMLLoader
 
     @FXML // fx:id="btninfoAzNws"
     private Button btninfoAzNws; // Value injected by FXMLLoader
@@ -76,7 +70,7 @@ public class NewsController {
     private Button btnTornaClassificaNws; // Value injected by FXMLLoader
 
     @FXML // fx:id="cmbAltraAziendaNws"
-    private ComboBox<?> cmbAltraAziendaNws; // Value injected by FXMLLoader
+    private ComboBox<Azienda> cmbAltraAziendaNws; // Value injected by FXMLLoader
 
     @FXML // fx:id="lblTitNws"
     private Label lblTitNws; // Value injected by FXMLLoader
@@ -116,7 +110,25 @@ public class NewsController {
 
     @FXML // fx:id="txtTitoloNws"
     private TextField txtTitoloNws; // Value injected by FXMLLoader
-
+    
+    Model model;
+    News newsSel;
+    
+    public void setModel(Model model) {
+    	this.model = model;
+    	Azienda aziendaSel = model.getAziendaSelezionata();
+    	lblAziendaCompNws.setText(aziendaSel.toString());
+    	List<News> newsList = this.model.getNewsAzienda(aziendaSel);
+    	cmbNews.getItems().addAll(newsList);
+    	cmbNews.getItems().add(0, null);
+    	List<Azienda> altreAz = model.getAziendeMenoSelezionata(aziendaSel);
+    	cmbAltraAziendaNws.getItems().addAll(altreAz);
+    	cmbAltraAziendaNws.getItems().add(0, null);
+    }
+    
+    
+    
+    
     @FXML
     void doApriBilancio(ActionEvent event) throws IOException {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("IndiciBilancio.fxml"));
@@ -131,8 +143,17 @@ public class NewsController {
     }
 
     @FXML
-    void doApriaListaAziende(ActionEvent event) {
-
+    void doApriaListaAziende(ActionEvent event) throws IOException {
+    	model.setAziendaSelezionata(cmbAltraAziendaNws.getValue());
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Articoli.fxml"));
+		ScrollPane root = (ScrollPane)loader.load();
+		ArticoliController controller = loader.getController();
+		controller.setModel(model);
+    	
+		Scene goToHome = new Scene(root);
+    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	newStage.setScene(goToHome);
+    	newStage.show();
     }
 
     @FXML
@@ -164,6 +185,13 @@ public class NewsController {
 
     @FXML
     void doEstraiAziendeNws(ActionEvent event) {
+    	this.newsSel = cmbNews.getValue();
+    	
+    	txtTitoloNws.setText(newsSel.getTitolo());
+    	txtDataNws.setText(newsSel.getDataPubblicazione());
+    	txtAbstractNws.setText(newsSel.getAbstractNews());
+    	txtKeywordNws.setText(newsSel.getKeywords());
+    	txtFonteNws.setText(newsSel.getFonte());
 
     }
 

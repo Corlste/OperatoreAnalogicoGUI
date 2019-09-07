@@ -17,6 +17,7 @@ public class Model {
 	private Azienda azienda;
 	private Azienda competitor;
 	private Azienda aziendaSelezionata;
+	private List<Azienda> aziendeCompetitorHome;
 	
 	public Model() {
 		super();
@@ -46,6 +47,16 @@ public class Model {
 		
 	}
 	
+	
+	
+	public List<Azienda> getAziendeCompetitorHome() {
+		return aziendeCompetitorHome;
+	}
+
+	public void setAziendeCompetitorHome(List<Azienda> aziendeCompetitorHome) {
+		this.aziendeCompetitorHome = aziendeCompetitorHome;
+	}
+
 	public Azienda getAzienda() {
 		return azienda;
 	}

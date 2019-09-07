@@ -25,6 +25,15 @@ public class Brevetto {
 		this.abstractBrevetto = abstractBrevetto;
 		this.codClass = codClass;
 	}
+	
+	
+
+	@Override
+	public String toString() {
+		return "Brevetto" + titolo ;
+	}
+
+
 
 	public Brevetto() {
 		super();

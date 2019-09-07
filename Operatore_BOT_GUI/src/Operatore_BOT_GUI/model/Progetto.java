@@ -37,6 +37,18 @@ public class Progetto {
 		this.coordinator = coordinator;
 		this.otherParticipants = otherParticipants;
 	}
+	
+	
+	
+	
+	@Override
+	public String toString() {
+		return "Progetto " + title ;
+	}
+
+
+
+
 	public Progetto() {
 		super();
 	}

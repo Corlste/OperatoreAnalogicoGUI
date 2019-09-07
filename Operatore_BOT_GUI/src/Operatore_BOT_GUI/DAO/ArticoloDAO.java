@@ -25,7 +25,6 @@ public class ArticoloDAO {
 				Articolo articolo = new Articolo(rs.getString("p_iva"), rs.getString("Title"), rs.getString("Link"),rs.getString("Backlink"),rs.getString("Text"),
 						rs.getString("Keywords"),rs.getString("Date"));
 				articoli.add(articolo);
-				System.out.println(articolo);
 			}
 			st.close();
 			conn.close();

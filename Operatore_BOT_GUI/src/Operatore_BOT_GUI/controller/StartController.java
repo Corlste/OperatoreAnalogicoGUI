@@ -6,7 +6,6 @@ package Operatore_BOT_GUI.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
-import java.util.ResourceBundle;
 
 import Operatore_BOT_GUI.model.Azienda;
 import Operatore_BOT_GUI.model.Model;
@@ -42,9 +41,15 @@ public class StartController {
     	cmbAzienda.getItems().addAll(this.model.getAziende());
     	cmbAzienda.getItems().add(0, null);
     }
+    
+    List<Azienda> aziendeCompetitor;
+
+    
     @FXML
     void doBtnCerca(ActionEvent event) throws IOException {
     	model.setAzienda(cmbAzienda.getValue());
+    	model.setAziendeCompetitorHome(model.getAziendeMenoSelezionata(cmbAzienda.getValue()));
+    	
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
 		AnchorPane root = (AnchorPane)loader.load();
 		homeController controller = loader.getController();

@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import Operatore_BOT_GUI.model.Appalto;
+import Operatore_BOT_GUI.model.Articolo;
 import Operatore_BOT_GUI.model.Azienda;
 import Operatore_BOT_GUI.model.Bilancio;
 import Operatore_BOT_GUI.model.Model;
@@ -1309,11 +1310,136 @@ public class ComparaController {
    		List<Progetto> progettiAzienda = model.getProgettiAzienda(azienda);
    		List<Progetto> progettiCompetitor = model.getProgettiAzienda(competitor);
    		
+   		double totProgettiAz16 = 0;
+   		double totProgettiAz17 = 0;
+   		double totProgettiAz18 = 0;
+   		int numProgAz16 = 0;
+   		int numProgAz17 = 0;
+   		int numProgAz18 = 0;
+   		double progIntAz16 = 0;
+   		double progIntAz17 = 0;
+   		double progIntAz18 = 0;
+   		double valoreRilievoprog = 20000;
+   		double contrUEAz16 = 0;
+   		double contrUEAz17 = 0;
+   		double contrUEAz18 = 0;
+   		
    		for (Progetto progetto: progettiAzienda) {
-   			
+   		
+   			if(progetto.getEndDate().endsWith("16") ) {
+   				totProgettiAz16+=progetto.getTotalCost();
+   				numProgAz16++;
+   				contrUEAz16+=progetto.getEcContributionTotal();
+   				if(progetto.getTotalCost()>valoreRilievoprog) {
+   					progIntAz16+=progetto.getTotalCost();
+   				}
+   			}
+   			if(progetto.getEndDate().endsWith("17") ) {
+   				totProgettiAz17+=progetto.getTotalCost();
+   				numProgAz17++;
+   				contrUEAz17+=progetto.getEcContributionTotal();
+   				if(progetto.getTotalCost()>valoreRilievoprog) {
+   					progIntAz17+=progetto.getTotalCost();
+   				}
+   			}
+   			if(progetto.getEndDate().endsWith("17") ) {
+   				totProgettiAz18+=progetto.getTotalCost();
+   				numProgAz18++;
+   				contrUEAz18+=progetto.getEcContributionTotal();
+   				if(progetto.getTotalCost()>valoreRilievoprog) {
+   					progIntAz18+=progetto.getTotalCost();
+   				}
+   			}
+   		}
+   		txtCostTotProg16.setText(String.valueOf(totProgettiAz16));
+   		txtCostTotProg17.setText(String.valueOf(totProgettiAz17));
+   		txtCostTotProg18.setText(String.valueOf(totProgettiAz18));
+   		txtNumProg16.setText(String.valueOf(numProgAz16));
+   		txtNumProg17.setText(String.valueOf(numProgAz17));
+   		txtNumProg18.setText(String.valueOf(numProgAz18));
+   		txtCostTotRile16.setText(String.valueOf(progIntAz16));
+   		txtCostTotRile17.setText(String.valueOf(progIntAz17));
+   		txtCostTotRile18.setText(String.valueOf(progIntAz18));
+   		txtContributoUE16.setText(String.valueOf(contrUEAz16));
+   		txtContributoUE17.setText(String.valueOf(contrUEAz17));
+   		txtContributoUE18.setText(String.valueOf(contrUEAz18));
+   		
+   		double totProgettiComp16 = 0;
+   		double totProgettiComp17 = 0;
+   		double totProgettiComp18 = 0;
+   		int numProgComp16 = 0;
+   		int numProgComp17 = 0;
+   		int numProgComp18 = 0;
+   		double progIntComp16 = 0;
+   		double progIntComp17 = 0;
+   		double progIntComp18 = 0;
+   		double contrUEComp16 = 0;
+   		double contrUEComp17 = 0;
+   		double contrUEComp18 = 0;
+   		
+   		for (Progetto progetto: progettiCompetitor) {
+   		
+   			if(progetto.getEndDate().endsWith("16") ) {
+   				totProgettiComp16+=progetto.getTotalCost();
+   				numProgComp16++;
+   				contrUEComp16+=progetto.getEcContributionTotal();
+   				if(progetto.getTotalCost()>valoreRilievoprog) {
+   					progIntComp16+=progetto.getTotalCost();
+   				}
+   			}
+   			if(progetto.getEndDate().endsWith("17") ) {
+   				totProgettiComp17+=progetto.getTotalCost();
+   				numProgComp17++;
+   				contrUEComp17+=progetto.getEcContributionTotal();
+   				if(progetto.getTotalCost()>valoreRilievoprog) {
+   					progIntComp17+=progetto.getTotalCost();
+   				}
+   			}
+   			if(progetto.getEndDate().endsWith("17") ) {
+   				totProgettiComp18+=progetto.getTotalCost();
+   				numProgComp18++;
+   				contrUEComp18+=progetto.getEcContributionTotal();
+   				if(progetto.getTotalCost()>valoreRilievoprog) {
+   					progIntComp18+=progetto.getTotalCost();
+   				}
+   			}
+   		}
+   		txtCostTotProg161.setText(String.valueOf(totProgettiComp16));
+   		txtCostTotProg171.setText(String.valueOf(totProgettiComp17));
+   		txtCostTotProg181.setText(String.valueOf(totProgettiComp18));
+   		txtNumProg161.setText(String.valueOf(numProgComp16));
+   		txtNumProg171.setText(String.valueOf(numProgComp17));
+   		txtNumProg181.setText(String.valueOf(numProgComp18));
+   		txtCostTotRile161.setText(String.valueOf(progIntComp16));
+   		txtCostTotRile171.setText(String.valueOf(progIntComp17));
+   		txtCostTotRile181.setText(String.valueOf(progIntComp18));
+   		txtContributoUE161.setText(String.valueOf(contrUEComp16));
+   		txtContributoUE171.setText(String.valueOf(contrUEComp17));
+   		txtContributoUE181.setText(String.valueOf(contrUEComp18));
+   		
+   		/*
+   		 * numero backink e articoli
+   		 */
+   		
+   		List<Articolo> articoliAz = model.getArticoliAzienda(azienda);
+   		List<Articolo> articoliComp = model.getArticoliAzienda(competitor);
+   		
+   		int backlinkAz16 = 0;
+   		int backlinkAz17 = 0;
+   		int backlinkAz18 = 0;
+   		for (Articolo art: articoliAz) {
+   			if(art.getDate().endsWith("16") ) {
+   				backlinkAz16++;
+   			}
+   			if(art.getDate().endsWith("17") ) {
+   				backlinkAz17++;
+   			}
+   			if(art.getDate().endsWith("18") ) {
+   				backlinkAz18++;
+   			}
    		}
    		
-   	
+   		
     }
     
     @FXML
@@ -1362,16 +1488,16 @@ public class ComparaController {
     }
 
     @FXML
-    void doEstraiNews(ActionEvent event) {
-//    	FXMLLoader loader = new FXMLLoader(getClass().getResource("News.fxml"));
-//		ScrollPane root = (ScrollPane)loader.load();
-//		NewsController controller = loader.getController();
-//		controller.setModel(model);
-//    	
-//		Scene goToHome = new Scene(root);
-//    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-//    	newStage.setScene(goToHome);
-//    	newStage.show();
+    void doEstraiNews(ActionEvent event) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("News.fxml"));
+		ScrollPane root = (ScrollPane)loader.load();
+		NewsController controller = loader.getController();
+		controller.setModel(model);
+    	
+		Scene goToHome = new Scene(root);
+    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	newStage.setScene(goToHome);
+    	newStage.show();
     }
 
     @FXML

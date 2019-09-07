@@ -157,7 +157,6 @@ import javafx.stage.Stage;
 
 		    @FXML
 		    void doEstraiAppalti(ActionEvent event) throws IOException {
-		    	model.setAziendaSelezionata(model.getAzienda());
 		    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Appalti.fxml"));
 				ScrollPane root = (ScrollPane)loader.load();
 				AppaltiController controller = loader.getController();
@@ -171,15 +170,15 @@ import javafx.stage.Stage;
 
 		    @FXML
 		    void doEstraiArticoli(ActionEvent event) throws IOException {
-		    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Articoli.fxml"));
-				ScrollPane root = (ScrollPane)loader.load();
-				ArticoliController controller = loader.getController();
-				controller.setModel(model);
-		    	
-				Scene goToHome = new Scene(root);
-		    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		    	newStage.setScene(goToHome);
-		    	newStage.show();
+//		    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Articoli.fxml"));
+//				ScrollPane root = (ScrollPane)loader.load();
+//				ArticoliController controller = loader.getController();
+//				controller.setModel(model);
+//		    	
+//				Scene goToHome = new Scene(root);
+//		    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+//		    	newStage.setScene(goToHome);
+//		    	newStage.show();
 		    }
 
 		    @FXML

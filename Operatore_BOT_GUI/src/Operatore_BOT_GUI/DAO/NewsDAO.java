@@ -15,7 +15,7 @@ public class NewsDAO {
 public List<News> getNewsAzienda (Azienda az) {
 		
 		String partitaIVA = az.getPartitaIVA();
-		final String sqlNewsAzienda = "SELECT * FROM progetti WHERE p_iva=? ;";
+		final String sqlNewsAzienda = "SELECT * FROM news WHERE p_iva=? ;";
 		List<News> listNews = new LinkedList<News>();
 		try {
 			Connection conn = DBConnect.getConnection();

@@ -3,8 +3,12 @@ package Operatore_BOT_GUI.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import Operatore_BOT_GUI.model.Appalto;
+import Operatore_BOT_GUI.model.Azienda;
+import Operatore_BOT_GUI.model.Brevetto;
 import Operatore_BOT_GUI.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -37,7 +41,7 @@ public class AziendaBrevettoController {
     private Label lblAziendaCompAz; // Value injected by FXMLLoader
 
     @FXML // fx:id="cmbAziendeBrevetto"
-    private ComboBox<?> cmbAziendeBrevetto; // Value injected by FXMLLoader
+    private ComboBox<Brevetto> cmbAziendeBrevetto; // Value injected by FXMLLoader
 
     @FXML // fx:id="btnInfoAzBre"
     private Button btnInfoAzBre; // Value injected by FXMLLoader
@@ -67,7 +71,7 @@ public class AziendaBrevettoController {
     private Button btnTornaClassificaBr; // Value injected by FXMLLoader
 
     @FXML // fx:id="cbxAltraAziendaBr"
-    private ChoiceBox<?> cbxAltraAziendaBr; // Value injected by FXMLLoader
+    private ComboBox<Azienda> cmbAltraAziendaBr; // Value injected by FXMLLoader
 
     @FXML // fx:id="lblAppNumber"
     private Label lblAppNumber; // Value injected by FXMLLoader
@@ -118,13 +122,32 @@ public class AziendaBrevettoController {
     private TextField txtCodiceClass; // Value injected by FXMLLoader
 
     Model model;
+    private Brevetto brevetto = new Brevetto();
+    Azienda aziendaSel;
     
     public void setModel(Model model) {
     	this.model = model;
+    	aziendaSel = model.getAziendaSelezionata();
+    	List<Brevetto> brevetti = this.model.getBrevettiAzienda(aziendaSel);
+    	cmbAziendeBrevetto.getItems().addAll(brevetti);
+    	cmbAziendeBrevetto.getItems().add(0, null);
+    	lblAziendaCompAz.setText(aziendaSel.toString());    	
+    	List<Azienda> altreAz = model.getAziendeMenoSelezionata(aziendaSel);
+    	cmbAltraAziendaBr.getItems().addAll(altreAz);
+    	cmbAltraAziendaBr.getItems().add(0, null);
     }
     @FXML
-    void doApriaListaAziende(ActionEvent event) {
-
+    void doApriaListaAziende(ActionEvent event) throws IOException {
+    	model.setAziendaSelezionata(cmbAltraAziendaBr.getValue());
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("AziendaBrevetto.fxml"));
+		ScrollPane root = (ScrollPane)loader.load();
+		AziendaBrevettoController controller = loader.getController();
+		controller.setModel(model);
+    	
+		Scene goToHome = new Scene(root);
+    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	newStage.setScene(goToHome);
+    	newStage.show();
     }
     
     @FXML
@@ -169,6 +192,7 @@ public class AziendaBrevettoController {
     
     @FXML
     void doEstraiBrevetti(ActionEvent event) {
+    
 
     }
 
@@ -226,7 +250,16 @@ public class AziendaBrevettoController {
 
     @FXML
     void doListaBrevettAz(ActionEvent event) {
-
+    	this.brevetto = cmbAziendeBrevetto.getValue();
+    	
+    	txtAppNumero.setText(brevetto.getAppNumber());
+    	txtFamilyID.setText(brevetto.getFamilyID());
+    	txtTit.setText(brevetto.getTitolo());
+    	txtAssegnee.setText(brevetto.getAssegnatario());
+    	txtInve.setText(brevetto.getInventori());
+    	txtDate.setText(brevetto.getData());
+    	txtDescription.setText(brevetto.getAbstractBrevetto());
+    	txtCodiceClass.setText(brevetto.getCodClass());
     }
 
     @FXML
@@ -256,7 +289,7 @@ public class AziendaBrevettoController {
         assert btnIndArticoliAzBr != null : "fx:id=\"btnIndArticoliAzBr\" was not injected: check your FXML file 'Azienda_Brevetto.fxml'.";
         assert btnIndNewsAzBr != null : "fx:id=\"btnIndNewsAzBr\" was not injected: check your FXML file 'Azienda_Brevetto.fxml'.";
         assert btnTornaClassificaBr != null : "fx:id=\"btnTornaClassificaBr\" was not injected: check your FXML file 'Azienda_Brevetto.fxml'.";
-        assert cbxAltraAziendaBr != null : "fx:id=\"cbxAltraAziendaBr\" was not injected: check your FXML file 'Azienda_Brevetto.fxml'.";
+        assert cmbAltraAziendaBr != null : "fx:id=\"cmbAltraAziendaBr\" was not injected: check your FXML file 'Azienda_Brevetto.fxml'.";
         assert lblAppNumber != null : "fx:id=\"lblAppNumber\" was not injected: check your FXML file 'Azienda_Brevetto.fxml'.";
         assert lblFamiId != null : "fx:id=\"lblFamiId\" was not injected: check your FXML file 'Azienda_Brevetto.fxml'.";
         assert lblTitolo != null : "fx:id=\"lblTitolo\" was not injected: check your FXML file 'Azienda_Brevetto.fxml'.";

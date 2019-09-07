@@ -150,7 +150,7 @@
                                                 <Insets left="5.0" />
                                              </GridPane.margin>
                                           </Label>
-                                          <Label fx:id="lblCodClass" prefHeight="18.0" prefWidth="147.0" text="Codiece classificazione" GridPane.rowIndex="7">
+                                          <Label fx:id="lblCodClass" prefHeight="18.0" prefWidth="147.0" text="Codice classificazione" GridPane.rowIndex="7">
                                              <GridPane.margin>
                                                 <Insets left="5.0" />
                                              </GridPane.margin>

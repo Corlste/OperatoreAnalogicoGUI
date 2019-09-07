@@ -17,6 +17,16 @@ public class ProdottoServizio {
 		this.descrizione = descrizione;
 		this.tipologia = tipologia;
 	}
+	
+	
+
+	@Override
+	public String toString() {
+		return "ProdottoServizio " + idProdottoServizio + ": "
+				+ nomeProdottoServizio ;
+	}
+
+
 
 	public ProdottoServizio() {
 		super();

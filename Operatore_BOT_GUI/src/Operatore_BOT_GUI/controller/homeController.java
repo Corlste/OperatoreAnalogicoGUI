@@ -93,7 +93,8 @@ public class homeController {
     	this.model = model;
     	Azienda azienda = model.getAzienda();
     	lblAzienda.setText(azienda.toString());
-    	aziendeCompetitor=model.getAziendeMenoSelezionata(azienda);
+    	
+    	aziendeCompetitor=model.getAziendeCompetitorHome();
     	if(aziendeCompetitor.size()>0) {
     		btnCompetitor1.setText(aziendeCompetitor.get(0).toString());
     		if(aziendeCompetitor.size()>1) {

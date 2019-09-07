@@ -21,6 +21,15 @@ public class News {
 		this.keywords = keywords;
 		this.fonte = fonte;
 	}
+	
+	
+
+	@Override
+	public String toString() {
+		return "News" + titolo ;
+	}
+
+
 
 	public News() {
 		super();

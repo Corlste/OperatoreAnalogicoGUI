@@ -209,8 +209,17 @@ public class AppaltiController {
     }
 
     @FXML
-    void doApriaListaAziende(ActionEvent event) {
+    void doApriaListaAziende(ActionEvent event) throws IOException {
+    	model.setAziendaSelezionata(cmbAltraAziendaAp.getValue());
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Appalti.fxml"));
+		ScrollPane root = (ScrollPane)loader.load();
+		AppaltiController controller = loader.getController();
+		controller.setModel(model);
     	
+		Scene goToHome = new Scene(root);
+    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	newStage.setScene(goToHome);
+    	newStage.show();
     	
    		
    		
@@ -290,7 +299,6 @@ public class AppaltiController {
 
     @FXML
     void doEstraiProgetti(ActionEvent event) throws IOException {
-
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("Progetti.fxml"));
 		ScrollPane root = (ScrollPane)loader.load();
 		ProgettiController controller = loader.getController();

@@ -3,9 +3,11 @@ package Operatore_BOT_GUI.controller;
 
 	import java.io.IOException;
 import java.net.URL;
-	import java.util.ResourceBundle;
+import java.util.List;
+import java.util.ResourceBundle;
 
 import Operatore_BOT_GUI.model.Azienda;
+import Operatore_BOT_GUI.model.Bilancio;
 import Operatore_BOT_GUI.model.Model;
 import javafx.event.ActionEvent;
 	import javafx.fxml.FXML;
@@ -14,7 +16,8 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 	import javafx.scene.control.ChoiceBox;
-	import javafx.scene.control.Label;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 	import javafx.scene.image.ImageView;
@@ -63,7 +66,7 @@ import javafx.stage.Stage;
 	    private Button btnTornaClassifica; // Value injected by FXMLLoader
 
 	    @FXML // fx:id="cbxAltraAzienda"
-	    private ChoiceBox<?> cbxAltraAzienda; // Value injected by FXMLLoader
+	    private ComboBox<Azienda> cmbAltraAzienda; // Value injected by FXMLLoader
 
 	    @FXML // fx:id="lblIdAnno1Az"
 	    private Label lblIdAnno1Az; // Value injected by FXMLLoader
@@ -423,6 +426,105 @@ import javafx.stage.Stage;
 	    	Azienda aziendaSel = model.getAziendaSelezionata();
 	    	lblAziendaCompAz.setText(aziendaSel.toString());
 	    	
+	    	List<Azienda> altreAz = model.getAziendeMenoSelezionata(aziendaSel);
+	    	cmbAltraAzienda.getItems().addAll(altreAz);
+	    	cmbAltraAzienda.getItems().add(0, null);
+	    	
+	    	Bilancio bilancio2016 = model.getBilancioAziendaAnno(aziendaSel, 2016);
+	    	Bilancio bilancio2017 = model.getBilancioAziendaAnno(aziendaSel, 2017);
+	    	Bilancio bilancio2018 = model.getBilancioAziendaAnno(aziendaSel, 2018);
+	    	
+	    	txtfatturato161Az.setText(String.valueOf(bilancio2016.getRicavi()));
+	    	txtVA161Az.setText(String.valueOf(bilancio2016.getValoreAggiunto()));
+	    	txtMOL161Az.setText(String.valueOf(bilancio2016.getMOL()));
+	    	txtRO161Az.setText(String.valueOf(bilancio2016.getRedditoOperativo()));
+	    	txtRE161Az.setText(String.valueOf(bilancio2016.getRisultatoEsercizio()));
+	    	txtCCN161Az.setText(String.valueOf(bilancio2016.getCapitaleCircNetto()));
+	    	txtKN161Az.setText(String.valueOf(bilancio2016.getPatrimonioNetto()));
+	    	txtROI161Az.setText(String.valueOf(bilancio2016.getROI()));
+	    	txtROE161Az.setText(String.valueOf(bilancio2016.getROE()));
+	    	txtROS161Az.setText(String.valueOf(bilancio2016.getROS()));
+	    	txtGIV161Az.setText(String.valueOf(bilancio2016.getGIV()));
+	    	txtLevFin161Az.setText(String.valueOf(bilancio2016.getLevaFinanziaria()));
+	    	txtLevOp161Az.setText(String.valueOf(bilancio2016.getLevaOperativa()));
+	    	txtLeverage161Az.setText(String.valueOf(bilancio2016.getLeverage()));
+	    	txtMSP161Az.setText(String.valueOf(bilancio2016.getMargineStrutturaPrimario()));
+	    	txtMSS161Az.setText(String.valueOf(bilancio2016.getMargineStrutturaSecondario()));
+	    	txtCurrentRatio161Az.setText(String.valueOf(bilancio2016.getCurrentRatio()));
+	    	txtAcidTest161Az.setText(String.valueOf(bilancio2016.getAcidTest()));
+	    	txtIndLiquidita161Az.setText(String.valueOf(bilancio2016.getIndiceLiquidità()));
+	    	txtIndIndebBrev161Az.setText(String.valueOf(bilancio2016.getIndiceIndebBreve()));
+	    	txtDebBanche161Az.setText(String.valueOf(bilancio2016.getDebBancheFatturato()));
+	    	txtOnFin161Az.setText(String.valueOf(bilancio2016.getOfFatturato()));
+	    	txtRicAddetto161Az.setText(String.valueOf(bilancio2016.getRicaviAddetto()));
+	    	txtRisEsercAddeto161Az.setText(String.valueOf(bilancio2016.getReAddetto()));
+	    	txtValAggAddeto161Az.setText(String.valueOf(bilancio2016.getVaAddetto()));
+	    	txtCostAddetto161Az.setText(String.valueOf(bilancio2016.getCost_lav_addetto()));
+	    	txtDurataMedCrediti161Az.setText(String.valueOf(bilancio2016.getDurataMediaCrediti()));
+	    	txtDurataMedDebiti161Az.setText(String.valueOf(bilancio2016.getDurataMediaDebiti()));
+	    	txtInvestimentiRD161Az.setText(String.valueOf(bilancio2016.getInvestimentiReD()));
+	    	
+	    	txtfatturato171Az.setText(String.valueOf(bilancio2017.getRicavi()));
+	    	txtVA171Az.setText(String.valueOf(bilancio2017.getValoreAggiunto()));
+	    	txtMOL171Az.setText(String.valueOf(bilancio2017.getMOL()));
+	    	txtRO171Az.setText(String.valueOf(bilancio2017.getRedditoOperativo()));
+	    	txtRE171Az.setText(String.valueOf(bilancio2017.getRisultatoEsercizio()));
+	    	txtCCN171Az.setText(String.valueOf(bilancio2017.getCapitaleCircNetto()));
+	    	txtKN171Az.setText(String.valueOf(bilancio2017.getPatrimonioNetto()));
+	    	txtROI171Az.setText(String.valueOf(bilancio2017.getROI()));
+	    	txtROE171Az.setText(String.valueOf(bilancio2017.getROE()));
+	    	txtROS171Az.setText(String.valueOf(bilancio2017.getROS()));
+	    	txtGIV171Az.setText(String.valueOf(bilancio2017.getGIV()));
+	    	txtLevFin171Az.setText(String.valueOf(bilancio2017.getLevaFinanziaria()));
+	    	txtLevOp171Az.setText(String.valueOf(bilancio2017.getLevaOperativa()));
+	    	txtLeverage171Az.setText(String.valueOf(bilancio2017.getLeverage()));
+	    	txtMSP171Az.setText(String.valueOf(bilancio2017.getMargineStrutturaPrimario()));
+	    	txtMSS171Az.setText(String.valueOf(bilancio2017.getMargineStrutturaSecondario()));
+	    	txtCurrentRatio171Az.setText(String.valueOf(bilancio2017.getCurrentRatio()));
+	    	txtAcidTest171Az.setText(String.valueOf(bilancio2017.getAcidTest()));
+	    	txtIndLiquidita171Az.setText(String.valueOf(bilancio2017.getIndiceLiquidità()));
+	    	txtIndIndebBrev171Az.setText(String.valueOf(bilancio2017.getIndiceIndebBreve()));
+	    	txtDebBanche171Az.setText(String.valueOf(bilancio2017.getDebBancheFatturato()));
+	    	txtOnFin171Az.setText(String.valueOf(bilancio2017.getOfFatturato()));
+	    	txtRicAddetto171Az.setText(String.valueOf(bilancio2017.getRicaviAddetto()));
+	    	txtRisEsercAddeto171Az.setText(String.valueOf(bilancio2017.getReAddetto()));
+	    	txtValAggAddeto171Az.setText(String.valueOf(bilancio2017.getVaAddetto()));
+	    	txtCostAddetto171Az.setText(String.valueOf(bilancio2017.getCost_lav_addetto()));
+	    	txtDurataMedCrediti171Az.setText(String.valueOf(bilancio2017.getDurataMediaCrediti()));
+	    	txtDurataMedDebiti171Az.setText(String.valueOf(bilancio2017.getDurataMediaDebiti()));
+	    	txtInvestimentiRD171Az.setText(String.valueOf(bilancio2017.getInvestimentiReD()));
+	    	
+	    	txtfatturato181Az.setText(String.valueOf(bilancio2018.getRicavi()));
+	    	txtVA181Az.setText(String.valueOf(bilancio2018.getValoreAggiunto()));
+	    	txtMOL181Az.setText(String.valueOf(bilancio2018.getMOL()));
+	    	txtRO181Az.setText(String.valueOf(bilancio2018.getRedditoOperativo()));
+	    	txtRE181Az.setText(String.valueOf(bilancio2018.getRisultatoEsercizio()));
+	    	txtCCN181Az.setText(String.valueOf(bilancio2018.getCapitaleCircNetto()));
+	    	txtKN181Az.setText(String.valueOf(bilancio2018.getPatrimonioNetto()));
+	    	txtROI181Az.setText(String.valueOf(bilancio2018.getROI()));
+	    	txtROE181Az.setText(String.valueOf(bilancio2018.getROE()));
+	    	txtROS181Az.setText(String.valueOf(bilancio2018.getROS()));
+	    	txtGIV181Az.setText(String.valueOf(bilancio2018.getGIV()));
+	    	txtLevFin181Az.setText(String.valueOf(bilancio2018.getLevaFinanziaria()));
+	    	txtLevOp181Az.setText(String.valueOf(bilancio2018.getLevaOperativa()));
+	    	txtLeverage181Az.setText(String.valueOf(bilancio2018.getLeverage()));
+	    	txtMSP181Az.setText(String.valueOf(bilancio2018.getMargineStrutturaPrimario()));
+	    	txtMSS181Az.setText(String.valueOf(bilancio2018.getMargineStrutturaSecondario()));
+	    	txtCurrentRatio181Az.setText(String.valueOf(bilancio2018.getCurrentRatio()));
+	    	txtAcidTest181Az.setText(String.valueOf(bilancio2018.getAcidTest()));
+	    	txtIndLiquidita181Az.setText(String.valueOf(bilancio2018.getIndiceLiquidità()));
+	    	txtIndIndebBrev181Az.setText(String.valueOf(bilancio2018.getIndiceIndebBreve()));
+	    	txtDebBanche181Az.setText(String.valueOf(bilancio2018.getDebBancheFatturato()));
+	    	txtOnFin181Az.setText(String.valueOf(bilancio2018.getOfFatturato()));
+	    	txtRicAddetto181Az.setText(String.valueOf(bilancio2018.getRicaviAddetto()));
+	    	txtRisEsercAddeto181Az.setText(String.valueOf(bilancio2018.getReAddetto()));
+	    	txtValAggAddeto181Az.setText(String.valueOf(bilancio2018.getVaAddetto()));
+	    	txtCostAddetto181Az.setText(String.valueOf(bilancio2018.getCost_lav_addetto()));
+	    	txtDurataMedCrediti181Az.setText(String.valueOf(bilancio2018.getDurataMediaCrediti()));
+	    	txtDurataMedDebiti181Az.setText(String.valueOf(bilancio2018.getDurataMediaDebiti()));
+	    	txtInvestimentiRD181Az.setText(String.valueOf(bilancio2018.getInvestimentiReD()));
+	    	
+	    	
 	    }
 	    
 	    @FXML
@@ -436,14 +538,22 @@ import javafx.stage.Stage;
 	    }
 	    
 	    @FXML
-	    void doApriaListaAziende(ActionEvent event) {
-
+	    void doApriaListaAziende(ActionEvent event) throws IOException {
+	    	model.setAziendaSelezionata(cmbAltraAzienda.getValue());
+	    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Appalti.fxml"));
+			ScrollPane root = (ScrollPane)loader.load();
+			AppaltiController controller = loader.getController();
+			controller.setModel(model);
+	    	
+			Scene goToHome = new Scene(root);
+	    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+	    	newStage.setScene(goToHome);
+	    	newStage.show();
 	    }
 
 
 	    @FXML
 	    void doEstraiAppalti(ActionEvent event) throws IOException {
-	    	model.setAziendaSelezionata(model.getAzienda());
 	    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Appalti.fxml"));
 			ScrollPane root = (ScrollPane)loader.load();
 			AppaltiController controller = loader.getController();
@@ -533,18 +643,6 @@ import javafx.stage.Stage;
 	    	newStage.show();
 	    }
 	    
-//	    void doTornaClassifica(ActionEvent event) throws IOException {
-	    	
-//	    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
-//	    	AnchorPane root = (AnchorPane)loader.load();
-//			homeController controller = loader.getController();
-//			controller.setModel(model);
-//	    	
-//			Scene goToHome = new Scene(root);
-//	    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-//	    	newStage.setScene(goToHome);
-//	    	newStage.show();
-//	    }
 	    
 	    @FXML
 	    void doTornaClassifica(ActionEvent event) throws IOException {
@@ -572,7 +670,7 @@ import javafx.stage.Stage;
 	        assert btnIndArticoliAz != null : "fx:id=\"btnIndArticoliAz\" was not injected: check your FXML file 'Azienda_Indici_bilancio.fxml'.";
 	        assert btnIndNewsAz != null : "fx:id=\"btnIndNewsAz\" was not injected: check your FXML file 'Azienda_Indici_bilancio.fxml'.";
 	        assert btnTornaClassifica != null : "fx:id=\"btnTornaClassifica\" was not injected: check your FXML file 'Azienda_Indici_bilancio.fxml'.";
-	        assert cbxAltraAzienda != null : "fx:id=\"cbxAltraAzienda\" was not injected: check your FXML file 'Azienda_Indici_bilancio.fxml'.";
+	        assert cmbAltraAzienda != null : "fx:id=\"cmbAltraAzienda\" was not injected: check your FXML file 'Azienda_Indici_bilancio.fxml'.";
 	        assert lblIdAnno1Az != null : "fx:id=\"lblIdAnno1Az\" was not injected: check your FXML file 'Azienda_Indici_bilancio.fxml'.";
 	        assert lblRicavi1Az != null : "fx:id=\"lblRicavi1Az\" was not injected: check your FXML file 'Azienda_Indici_bilancio.fxml'.";
 	        assert lblMol1Az != null : "fx:id=\"lblMol1Az\" was not injected: check your FXML file 'Azienda_Indici_bilancio.fxml'.";
