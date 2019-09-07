@@ -2,21 +2,31 @@ package Operatore_BOT_GUI.controller;
 
 
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import Operatore_BOT_GUI.model.Appalto;
+import Operatore_BOT_GUI.model.Azienda;
 import Operatore_BOT_GUI.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 public class AppaltiController {
 
@@ -33,7 +43,7 @@ public class AppaltiController {
     private Label lblAziendaCompAzAp; // Value injected by FXMLLoader
 
     @FXML // fx:id="cmbAppalti"
-    private ComboBox<?> cmbAppalti; // Value injected by FXMLLoader
+    private ComboBox<Appalto> cmbAppalti; // Value injected by FXMLLoader
 
     @FXML // fx:id="btnInfoAzApp"
     private Button btnInfoAzApp; // Value injected by FXMLLoader
@@ -63,7 +73,7 @@ public class AppaltiController {
     private Button btnTornaClassificaAp; // Value injected by FXMLLoader
 
     @FXML // fx:id="cbxAltraAziendaAp"
-    private ChoiceBox<?> cbxAltraAziendaAp; // Value injected by FXMLLoader
+    private ComboBox<Azienda> cmbAltraAziendaAp; // Value injected by FXMLLoader
 
     @FXML // fx:id="lblFunding"
     private GridPane lblFunding; // Value injected by FXMLLoader
@@ -159,9 +169,19 @@ public class AppaltiController {
     private TextField txtValContApp; // Value injected by FXMLLoader
 
     Model model;
+    private Appalto appalto = new Appalto();
+    Azienda aziendaSel;
     
     public void setModel(Model model) {
     	this.model = model;
+    	aziendaSel = model.getAziendaSelezionata();
+    	List<Appalto> appalti = this.model.getAppaltiAzienda(aziendaSel);
+    	cmbAppalti.getItems().addAll(appalti);
+    	cmbAppalti.getItems().add(0, null);
+    	lblAziendaCompAzAp.setText(aziendaSel.toString());    	
+    	List<Azienda> altreAz = model.getAziendeMenoSelezionata(aziendaSel);
+    	cmbAltraAziendaAp.getItems().addAll(altreAz);
+    	cmbAltraAziendaAp.getItems().add(0, null);
     }
     
     
@@ -176,13 +196,24 @@ public class AppaltiController {
     }
 
     @FXML
-    void doApriBilancio(ActionEvent event) {
-
+    void doApriBilancio(ActionEvent event) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("IndiciBilancio.fxml"));
+		ScrollPane root = (ScrollPane)loader.load();
+		IndiciBilancioController controller = loader.getController();
+		controller.setModel(model);
+    	
+		Scene goToHome = new Scene(root);
+    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	newStage.setScene(goToHome);
+    	newStage.show();
     }
 
     @FXML
-    void doApriLink(ActionEvent event) {
-
+    void doApriaListaAziende(ActionEvent event) {
+    	
+    	
+   		
+   		
     }
 
     @FXML
@@ -191,43 +222,123 @@ public class AppaltiController {
     }
 
     @FXML
-    void doEstraiArticoli(ActionEvent event) {
+    void doEstraiArticoli(ActionEvent event) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Articoli.fxml"));
+		ScrollPane root = (ScrollPane)loader.load();
+		ArticoliController controller = loader.getController();
+		controller.setModel(model);
+    	
+		Scene goToHome = new Scene(root);
+    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	newStage.setScene(goToHome);
+    	newStage.show();
+    }
+
+    @FXML
+    void doEstraiBrevetti(ActionEvent event) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("AziendaBrevetto.fxml"));
+		ScrollPane root = (ScrollPane)loader.load();
+		AziendaBrevettoController controller = loader.getController();
+		controller.setModel(model);
+    	
+		Scene goToHome = new Scene(root);
+    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	newStage.setScene(goToHome);
+    	newStage.show();
+    }
+
+    @FXML
+    void doEstraiInfoAzienda(ActionEvent event) throws IOException {
+
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("InfoAzienda.fxml"));
+		ScrollPane root = (ScrollPane)loader.load();
+		InfoAziendaController controller = loader.getController();
+		controller.setModel(model);
+    	
+		Scene goToHome = new Scene(root);
+    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	newStage.setScene(goToHome);
+    	newStage.show();
+    }
+
+    @FXML
+    void doEstraiNews(ActionEvent event) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("News.fxml"));
+		ScrollPane root = (ScrollPane)loader.load();
+		NewsController controller = loader.getController();
+		controller.setModel(model);
+    	
+		Scene goToHome = new Scene(root);
+    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	newStage.setScene(goToHome);
+    	newStage.show();
+    }
+
+    @FXML
+    void doEstraiProdotti(ActionEvent event) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("ProdottiServizi.fxml"));
+		ScrollPane root = (ScrollPane)loader.load();
+		ProdottiServiziController controller = loader.getController();
+		controller.setModel(model);
+    	
+		Scene goToHome = new Scene(root);
+    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	newStage.setScene(goToHome);
+    	newStage.show();
 
     }
 
     @FXML
-    void doEstraiBrevetti(ActionEvent event) {
+    void doEstraiProgetti(ActionEvent event) throws IOException {
 
-    }
-
-    @FXML
-    void doEstraiInfoAzienda(ActionEvent event) {
-
-    }
-
-    @FXML
-    void doEstraiNews(ActionEvent event) {
-
-    }
-
-    @FXML
-    void doEstraiProdotti(ActionEvent event) {
-
-    }
-
-    @FXML
-    void doEstraiProgetti(ActionEvent event) {
-
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Progetti.fxml"));
+		ScrollPane root = (ScrollPane)loader.load();
+		ProgettiController controller = loader.getController();
+		controller.setModel(model);
+    	
+		Scene goToHome = new Scene(root);
+    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	newStage.setScene(goToHome);
+    	newStage.show();
     }
 
     @FXML
     void doScegliAppalto(ActionEvent event) {
+    	this.appalto = cmbAppalti.getValue();
 
+    	txtCodAppalto.setText(appalto.getCodiceAppalto());
+    	txtDataPubb.setText(appalto.getDataPubblicazione());
+    	txtDataScad.setText(appalto.getDataScadenza());
+    	txtEsito.setText(appalto.getEsito());
+    	txtAppalt.setText(appalto.getAppaltatrice());
+    	txtContraent.setText(appalto.getContraente());
+    	Boolean raggruppamento = appalto.isRaggruppamento();
+    	String raggrupp = raggruppamento.toString();
+    	txtRaggru.setText(raggrupp);
+    	txtAltrContr.setText(appalto.getAltriContraenti());
+    	txtCodiceCpv.setText(appalto.getCodiceCPV());
+    	txtOggettoApp.setText(appalto.getOggetto());
+    	txtDescrApp.setText(appalto.getDescrizione());
+    	txtLugEsecu.setText(appalto.getLuogoEsecuzione());
+    	Boolean fondiUE = appalto.isFondiUE();
+    	String fondi = fondiUE.toString();
+    	txtFondiEu.setText(fondi);
+    	txtCodProgApp.setText(appalto.getCodiceProgetto());
+    	txtValContApp.setText(String.valueOf(appalto.getValoreContratto()));
+    	
     }
 
     @FXML
-    void doTornaclassifica(ActionEvent event) {
-
+    void doTornaclassifica(ActionEvent event) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
+    	AnchorPane root = (AnchorPane)loader.load();
+		homeController controller = loader.getController();
+		controller.setModel(model);
+    	
+		Scene goToHome = new Scene(root);
+    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	newStage.setScene(goToHome);
+    	newStage.show();
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
@@ -244,7 +355,7 @@ public class AppaltiController {
         assert btnIndArticoliAzBrAp != null : "fx:id=\"btnIndArticoliAzBrAp\" was not injected: check your FXML file 'Appalti_Azienda.fxml'.";
         assert btnIndNewsAzAp != null : "fx:id=\"btnIndNewsAzAp\" was not injected: check your FXML file 'Appalti_Azienda.fxml'.";
         assert btnTornaClassificaAp != null : "fx:id=\"btnTornaClassificaAp\" was not injected: check your FXML file 'Appalti_Azienda.fxml'.";
-        assert cbxAltraAziendaAp != null : "fx:id=\"cbxAltraAziendaAp\" was not injected: check your FXML file 'Appalti_Azienda.fxml'.";
+        assert cmbAltraAziendaAp != null : "fx:id=\"cmbAltraAziendaAp\" was not injected: check your FXML file 'Appalti_Azienda.fxml'.";
         assert lblFunding != null : "fx:id=\"lblFunding\" was not injected: check your FXML file 'Appalti_Azienda.fxml'.";
         assert lblCoAppalto != null : "fx:id=\"lblCoAppalto\" was not injected: check your FXML file 'Appalti_Azienda.fxml'.";
         assert lblDataPubb != null : "fx:id=\"lblDataPubb\" was not injected: check your FXML file 'Appalti_Azienda.fxml'.";

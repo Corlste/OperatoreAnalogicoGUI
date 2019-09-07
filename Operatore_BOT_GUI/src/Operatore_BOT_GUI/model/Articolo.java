@@ -22,9 +22,27 @@ public class Articolo {
 		this.date = date;
 	}
 
+	
+	
+	@Override
+	public String toString() {
+		return "Articolo " + title;
+	}
+
+	
+
+
 	public Articolo() {
 		super();
 	}
+
+//	@Override
+//	public String toString() {
+//		return "Articolo title=" + title + ",\n Link=" + Link + ",\n backlink=" + backlink
+//				+ ",\n \n \n  text=" + text + ",\n  keywords=" + keywords + ",\n date=" + date + "]";
+//	}
+
+
 
 	public String getPartitaIVA() {
 		return partitaIVA;

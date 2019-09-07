@@ -80,6 +80,10 @@ public class homeController {
     @FXML // fx:id="btnCompara4"
     private Button btnCompara4; // Value injected by FXMLLoader
     
+    @FXML
+    private Button btnAziendaHome;
+
+    
     private Model model;
     
     List<Azienda> aziende;
@@ -89,7 +93,7 @@ public class homeController {
     	this.model = model;
     	Azienda azienda = model.getAzienda();
     	lblAzienda.setText(azienda.toString());
-    	aziendeCompetitor=model.getAziendeMenoSelezionata();
+    	aziendeCompetitor=model.getAziendeMenoSelezionata(azienda);
     	if(aziendeCompetitor.size()>0) {
     		btnCompetitor1.setText(aziendeCompetitor.get(0).toString());
     		if(aziendeCompetitor.size()>1) {
@@ -106,6 +110,7 @@ public class homeController {
 
     @FXML
     void doAppalti(ActionEvent event) throws IOException {
+    	model.setAziendaSelezionata(model.getAzienda());
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("Appalti.fxml"));
 		ScrollPane root = (ScrollPane)loader.load();
 		AppaltiController controller = loader.getController();
@@ -115,11 +120,13 @@ public class homeController {
     	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
     	newStage.setScene(goToHome);
     	newStage.show();
+    	
 
     }
 
     @FXML
     void doArticoli(ActionEvent event) throws IOException {
+    	model.setAziendaSelezionata(model.getAzienda());
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("Articoli.fxml"));
 		ScrollPane root = (ScrollPane)loader.load();
 		ArticoliController controller = loader.getController();
@@ -134,6 +141,7 @@ public class homeController {
 
     @FXML
     void doBilancio(ActionEvent event) throws IOException {
+    	model.setAziendaSelezionata(model.getAzienda());
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("IndiciBilancio.fxml"));
 		ScrollPane root = (ScrollPane)loader.load();
 		IndiciBilancioController controller = loader.getController();
@@ -148,6 +156,7 @@ public class homeController {
 
     @FXML
     void doBrevetti(ActionEvent event) throws IOException {
+    	model.setAziendaSelezionata(model.getAzienda());
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("AziendaBrevetto.fxml"));
 		ScrollPane root = (ScrollPane)loader.load();
 		AziendaBrevettoController controller = loader.getController();
@@ -240,41 +249,81 @@ public class homeController {
     }
 
     @FXML
-    void doCompetitor1(ActionEvent event) {
+    void doCompetitor1(ActionEvent event) throws IOException {
+    	model.setAziendaSelezionata(aziendeCompetitor.get(0));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("InfoAzienda.fxml"));
+		ScrollPane root = (ScrollPane)loader.load();
+		InfoAziendaController controller = loader.getController();
+		controller.setModel(model);
+    	
+		Scene goToHome = new Scene(root);
+    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	newStage.setScene(goToHome);
+    	newStage.show();
+    	
+    }
+
+    @FXML
+    void doCompetitor2(ActionEvent event) throws IOException {
+    	model.setAziendaSelezionata(aziendeCompetitor.get(1));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("InfoAzienda.fxml"));
+		ScrollPane root = (ScrollPane)loader.load();
+		InfoAziendaController controller = loader.getController();
+		controller.setModel(model);
+    	
+		Scene goToHome = new Scene(root);
+    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	newStage.setScene(goToHome);
+    	newStage.show();
 
     }
 
     @FXML
-    void doCompetitor2(ActionEvent event) {
-
+    void doCompetitor3(ActionEvent event) throws IOException {
+    	model.setAziendaSelezionata(aziendeCompetitor.get(2));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("InfoAzienda.fxml"));
+		ScrollPane root = (ScrollPane)loader.load();
+		InfoAziendaController controller = loader.getController();
+		controller.setModel(model);
+    	
+		Scene goToHome = new Scene(root);
+    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	newStage.setScene(goToHome);
+    	newStage.show();
     }
 
     @FXML
-    void doCompetitor3(ActionEvent event) {
-
+    void doCompetitor4(ActionEvent event) throws IOException {
+    	model.setAziendaSelezionata(aziendeCompetitor.get(3));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("InfoAzienda.fxml"));
+		ScrollPane root = (ScrollPane)loader.load();
+		InfoAziendaController controller = loader.getController();
+		controller.setModel(model);
+    	
+		Scene goToHome = new Scene(root);
+    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	newStage.setScene(goToHome);
+    	newStage.show();
     }
 
     @FXML
-    void doCompetitor4(ActionEvent event) {
-
-    }
-
-    @FXML
-    void doNews(ActionEvent event) {
-//    	FXMLLoader loader = new FXMLLoader(getClass().getResource("News.fxml"));
-//		ScrollPane root = (ScrollPane)loader.load();
-//		NewsController controller = loader.getController();
-//		controller.setModel(model);
-//    	
-//		Scene goToHome = new Scene(root);
-//    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-//    	newStage.setScene(goToHome);
-//    	newStage.show();
+    void doNews(ActionEvent event) throws IOException {
+    	model.setAziendaSelezionata(model.getAzienda());
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("News.fxml"));
+		ScrollPane root = (ScrollPane)loader.load();
+		NewsController controller = loader.getController();
+		controller.setModel(model);
+    	
+		Scene goToHome = new Scene(root);
+    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	newStage.setScene(goToHome);
+    	newStage.show();
     	
     }
 
     @FXML
     void doProdotti(ActionEvent event) throws IOException {
+    	model.setAziendaSelezionata(model.getAzienda());
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("ProdottiServizi.fxml"));
 		ScrollPane root = (ScrollPane)loader.load();
 		ProdottiServiziController controller = loader.getController();
@@ -286,9 +335,24 @@ public class homeController {
     	newStage.show();
 
     }
+    
+    @FXML
+    void doVaiInfoAzienda(ActionEvent event) throws IOException {
+    	model.setAziendaSelezionata(model.getAzienda());
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("InfoAzienda.fxml"));
+		ScrollPane root = (ScrollPane)loader.load();
+		InfoAziendaController controller = loader.getController();
+		controller.setModel(model);
+    	
+		Scene goToHome = new Scene(root);
+    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	newStage.setScene(goToHome);
+    	newStage.show();
+    }
 
     @FXML
     void doProgetti(ActionEvent event) throws IOException {
+    	model.setAziendaSelezionata(model.getAzienda());
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("Progetti.fxml"));
 		ScrollPane root = (ScrollPane)loader.load();
 		ProgettiController controller = loader.getController();

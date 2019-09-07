@@ -3,67 +3,139 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="Operatore_BOT_GUI.controller.homeController">
+<AnchorPane prefHeight="929.0" prefWidth="1719.0" style="-fx-background-color: ebe5e5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Operatore_BOT_GUI.controller.homeController">
    <children>
-      <HBox>
+      <ImageView fitHeight="235.0" fitWidth="257.0" layoutX="-1.0">
+         <image>
+            <Image url="@/Operatore_BOT_GUI/controller/sfondo_conmpara.jpg" />
+         </image>
+      </ImageView>
+      <HBox layoutX="-17.0" layoutY="-1.0" prefHeight="929.0" prefWidth="1785.0">
          <children>
-            <VBox>
+            <VBox prefHeight="514.0" prefWidth="594.0">
                <children>
-                  <Label fx:id="lblAzienda" text="Azienda" />
-                  <Button fx:id="btnProdotti" mnemonicParsing="false" onAction="#doProdotti" text="Prodotti/Servizi" />
-                  <Button fx:id="btnNews" mnemonicParsing="false" onAction="#doNews" text="News" />
-                  <Button fx:id="btnProgetti" mnemonicParsing="false" onAction="#doProgetti" text="Progetti" />
-                  <Button fx:id="btnBrevetti" mnemonicParsing="false" onAction="#doBrevetti" text="Brevetti" />
-                  <Button fx:id="btnAppalti" mnemonicParsing="false" onAction="#doAppalti" text="Appalti" />
-                  <Button fx:id="btnBilancio" mnemonicParsing="false" onAction="#doBilancio" text="Bilancio" />
-                  <Button fx:id="btnArticoli" mnemonicParsing="false" onAction="#doArticoli" text="Articoli" />
+                  <AnchorPane prefHeight="449.0" prefWidth="491.0">
+                     <children>
+                        <ImageView fitHeight="503.0" fitWidth="537.0" layoutX="-29.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@/Operatore_BOT_GUI/controller/Azienda_Compara.jpg" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="lblAzienda" alignment="CENTER" layoutX="132.0" layoutY="195.0" opacity="0.0" prefHeight="71.0" prefWidth="186.0" text="Azienda">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btnProdotti" layoutX="358.0" layoutY="128.0" mnemonicParsing="false" onAction="#doProdotti" rotate="66.8" style="-fx-background-color: #139b48;" text="Prodotti">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnNews" layoutX="86.0" layoutY="379.0" mnemonicParsing="false" onAction="#doNews" rotate="-140.9" style="-fx-background-color: f8991e;" text="News">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnProgetti" layoutX="-2.0" layoutY="224.0" mnemonicParsing="false" onAction="#doProgetti" prefHeight="38.0" prefWidth="95.0" rotate="-92.3" style="-fx-background-color: #4554a5;" text="Progetti">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnBrevetti" layoutX="247.0" layoutY="408.0" mnemonicParsing="false" onAction="#doBrevetti" rotate="164.2" style="-fx-background-color: #939598;" text="Brevetti">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnAppalti" layoutX="80.0" layoutY="68.0" mnemonicParsing="false" onAction="#doAppalti" rotate="-40.2" style="-fx-background-color: #f8d731;" text="Appalti">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnBilancio" layoutX="231.0" layoutY="33.0" mnemonicParsing="false" onAction="#doBilancio" rotate="16.2" style="-fx-background-color: cd2027;" text="Bilancio">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnArticoli" layoutX="377.0" layoutY="300.0" mnemonicParsing="false" onAction="#doArticoli" rotate="111.9" style="-fx-background-color: #a953a0;" text="Articoli">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnAziendaHome" layoutX="127.0" layoutY="195.0" mnemonicParsing="false" onAction="#doVaiInfoAzienda" prefHeight="71.0" prefWidth="211.0" text="Azienda">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="100.0" top="20.0" />
+                     </VBox.margin>
+                  </AnchorPane>
                </children>
                <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets bottom="10.0" left="100.0" right="10.0" top="200.0" />
                </HBox.margin>
             </VBox>
-            <VBox>
+            <AnchorPane prefHeight="756.0" prefWidth="678.0">
                <children>
-                  <Label text="Clicca sull'azienda per analizzarla meglio">
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin>
+                  <ImageView fitHeight="536.0" fitWidth="678.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/Operatore_BOT_GUI/controller/prova.jpg" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="btnCompetitor1" layoutX="165.0" layoutY="98.0" mnemonicParsing="false" onAction="#doCompetitor1" prefHeight="49.0" prefWidth="342.0" style="-fx-background-color: transparent;" text="Competitor 1">
+                     <font>
+                        <Font size="21.0" />
+                     </font></Button>
+                  <Button fx:id="btnCompetitor2" layoutX="165.0" layoutY="174.0" mnemonicParsing="false" onAction="#doCompetitor2" prefHeight="49.0" prefWidth="342.0" style="-fx-background-color: transparent;" text="Cmpetitor 2">
+                     <font>
+                        <Font size="21.0" />
+                     </font></Button>
+                  <Button fx:id="btnCompetitor3" layoutX="165.0" layoutY="247.0" mnemonicParsing="false" onAction="#doCompetitor3" prefHeight="49.0" prefWidth="342.0" style="-fx-background-color: transparent;" text="Competitor 3">
+                     <font>
+                        <Font size="21.0" />
+                     </font></Button>
+                  <Button fx:id="btnCompetitor4" layoutX="165.0" layoutY="322.0" mnemonicParsing="false" onAction="#doCompetitor4" prefHeight="49.0" prefWidth="342.0" style="-fx-background-color: transparent;" text="Competitor 4">
+                     <font>
+                        <Font size="21.0" />
+                     </font></Button>
+                  <Label layoutX="139.0" layoutY="104.0" text="1">
+                     <font>
+                        <Font size="28.0" />
+                     </font>
                   </Label>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Label text="1" />
-                        <Button fx:id="btnCompetitor1" mnemonicParsing="false" onAction="#doCompetitor1" text="Competitor 1" />
-                        <Button fx:id="btnCompara1" mnemonicParsing="false" onAction="#doCompara1" text="Compara" />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Label text="2" />
-                        <Button fx:id="btnCompetitor2" mnemonicParsing="false" onAction="#doCompetitor2" text="Cmpetitor 2" />
-                        <Button fx:id="btnCompara2" mnemonicParsing="false" onAction="#doCompara2" text="Compara" />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Label text="3" />
-                        <Button fx:id="btnCompetitor3" mnemonicParsing="false" onAction="#doCompetitor3" text="Competitor 3" />
-                        <Button fx:id="btnCompara3" mnemonicParsing="false" onAction="#doCompara3" text="Compara" />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0">
-                     <children>
-                        <Label text="4" />
-                        <Button fx:id="btnCompetitor4" mnemonicParsing="false" onAction="#doCompetitor4" text="Competitor 4" />
-                        <Button fx:id="btnCompara4" mnemonicParsing="false" onAction="#doCompara4" text="Compara" />
-                     </children>
-                  </HBox>
+                  <Label layoutX="140.0" layoutY="176.0" text="2">
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="139.0" layoutY="248.0" text="3">
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="137.0" layoutY="327.0" text="4">
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btnCompara4" layoutX="512.0" layoutY="322.0" mnemonicParsing="false" onAction="#doCompara4" prefHeight="48.0" prefWidth="66.0" style="-fx-background-color: transparent;" text="Compara" />
+                  <Button fx:id="btnCompara3" layoutX="512.0" layoutY="247.0" mnemonicParsing="false" onAction="#doCompara3" prefHeight="48.0" prefWidth="66.0" style="-fx-background-color: transparent;" text="Compara" />
+                  <Button fx:id="btnCompara2" layoutX="512.0" layoutY="173.0" mnemonicParsing="false" onAction="#doCompara2" prefHeight="48.0" prefWidth="66.0" style="-fx-background-color: transparent;" text="Compara" />
+                  <Button fx:id="btnCompara1" layoutX="512.0" layoutY="99.0" mnemonicParsing="false" onAction="#doCompara1" prefHeight="48.0" prefWidth="66.0" style="-fx-background-color: transparent;" text="Compara" />
+                  <Label layoutX="432.0" prefHeight="70.0" prefWidth="413.0" text="Clicca sull'azienda per analizzarla meglio" />
                </children>
-            </VBox>
+               <HBox.margin>
+                  <Insets left="30.0" top="200.0" />
+               </HBox.margin>
+            </AnchorPane>
          </children>
       </HBox>
    </children>

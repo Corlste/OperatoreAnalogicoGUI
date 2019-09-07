@@ -22,8 +22,10 @@ public class ArticoloDAO {
 			st.setString(1, partitaIVA);
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
-				Articolo articolo = new Articolo(rs.getString(1), rs.getString(2), rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7));
+				Articolo articolo = new Articolo(rs.getString("p_iva"), rs.getString("Title"), rs.getString("Link"),rs.getString("Backlink"),rs.getString("Text"),
+						rs.getString("Keywords"),rs.getString("Date"));
 				articoli.add(articolo);
+				System.out.println(articolo);
 			}
 			st.close();
 			conn.close();

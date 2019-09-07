@@ -1,17 +1,25 @@
 package Operatore_BOT_GUI.controller;
 
 
-	import java.net.URL;
+	import java.io.IOException;
+import java.net.URL;
 	import java.util.ResourceBundle;
 
+import Operatore_BOT_GUI.model.Azienda;
 import Operatore_BOT_GUI.model.Model;
 import javafx.event.ActionEvent;
 	import javafx.fxml.FXML;
-	import javafx.scene.control.Button;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 	import javafx.scene.control.ChoiceBox;
 	import javafx.scene.control.Label;
-	import javafx.scene.control.TextField;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 	import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 	public class IndiciBilancioController {
 
@@ -412,6 +420,9 @@ import javafx.event.ActionEvent;
 	    
 	    public void setModel(Model model) {
 	    	this.model = model;
+	    	Azienda aziendaSel = model.getAziendaSelezionata();
+	    	lblAziendaCompAz.setText(aziendaSel.toString());
+	    	
 	    }
 	    
 	    @FXML
@@ -423,40 +434,129 @@ import javafx.event.ActionEvent;
 	    void doApriBilancio(ActionEvent event) {
 
 	    }
-
+	    
 	    @FXML
-	    void doEstraiAppalti(ActionEvent event) {
+	    void doApriaListaAziende(ActionEvent event) {
 
 	    }
 
-	    @FXML
-	    void doEstraiArticoli(ActionEvent event) {
 
+	    @FXML
+	    void doEstraiAppalti(ActionEvent event) throws IOException {
+	    	model.setAziendaSelezionata(model.getAzienda());
+	    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Appalti.fxml"));
+			ScrollPane root = (ScrollPane)loader.load();
+			AppaltiController controller = loader.getController();
+			controller.setModel(model);
+	    	
+			Scene goToHome = new Scene(root);
+	    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+	    	newStage.setScene(goToHome);
+	    	newStage.show();
 	    }
 
 	    @FXML
-	    void doEstraiBrevetti(ActionEvent event) {
-
+	    void doEstraiArticoli(ActionEvent event) throws IOException {
+	    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Articoli.fxml"));
+			ScrollPane root = (ScrollPane)loader.load();
+			ArticoliController controller = loader.getController();
+			controller.setModel(model);
+	    	
+			Scene goToHome = new Scene(root);
+	    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+	    	newStage.setScene(goToHome);
+	    	newStage.show();
 	    }
 
 	    @FXML
-	    void doEstraiInfoAzienda(ActionEvent event) {
-
+	    void doEstraiBrevetti(ActionEvent event) throws IOException {
+	    	FXMLLoader loader = new FXMLLoader(getClass().getResource("AziendaBrevetto.fxml"));
+			ScrollPane root = (ScrollPane)loader.load();
+			AziendaBrevettoController controller = loader.getController();
+			controller.setModel(model);
+	    	
+			Scene goToHome = new Scene(root);
+	    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+	    	newStage.setScene(goToHome);
+	    	newStage.show();
 	    }
 
 	    @FXML
-	    void doEstraiNews(ActionEvent event) {
-
+	    void doEstraiInfoAzienda(ActionEvent event) throws IOException {
+	    	FXMLLoader loader = new FXMLLoader(getClass().getResource("InfoAzienda.fxml"));
+			ScrollPane root = (ScrollPane)loader.load();
+			InfoAziendaController controller = loader.getController();
+			controller.setModel(model);
+	    	
+			Scene goToHome = new Scene(root);
+	    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+	    	newStage.setScene(goToHome);
+	    	newStage.show();
 	    }
 
 	    @FXML
-	    void doEstraiProdotti(ActionEvent event) {
-
+	    void doEstraiNews(ActionEvent event) throws IOException {
+	    	FXMLLoader loader = new FXMLLoader(getClass().getResource("News.fxml"));
+			ScrollPane root = (ScrollPane)loader.load();
+			NewsController controller = loader.getController();
+			controller.setModel(model);
+	    	
+			Scene goToHome = new Scene(root);
+	    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+	    	newStage.setScene(goToHome);
+	    	newStage.show();
 	    }
 
 	    @FXML
-	    void doEstraiProgetti(ActionEvent event) {
+	    void doEstraiProdotti(ActionEvent event) throws IOException {
+	    	FXMLLoader loader = new FXMLLoader(getClass().getResource("ProdottiServizi.fxml"));
+			ScrollPane root = (ScrollPane)loader.load();
+			ProdottiServiziController controller = loader.getController();
+			controller.setModel(model);
+	    	
+			Scene goToHome = new Scene(root);
+	    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+	    	newStage.setScene(goToHome);
+	    	newStage.show();
+	    }
 
+	    @FXML
+	    void doEstraiProgetti(ActionEvent event) throws IOException {
+	    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Progetti.fxml"));
+			ScrollPane root = (ScrollPane)loader.load();
+			ProgettiController controller = loader.getController();
+			controller.setModel(model);
+	    	
+			Scene goToHome = new Scene(root);
+	    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+	    	newStage.setScene(goToHome);
+	    	newStage.show();
+	    }
+	    
+//	    void doTornaClassifica(ActionEvent event) throws IOException {
+	    	
+//	    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
+//	    	AnchorPane root = (AnchorPane)loader.load();
+//			homeController controller = loader.getController();
+//			controller.setModel(model);
+//	    	
+//			Scene goToHome = new Scene(root);
+//	    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+//	    	newStage.setScene(goToHome);
+//	    	newStage.show();
+//	    }
+	    
+	    @FXML
+	    void doTornaClassifica(ActionEvent event) throws IOException {
+	    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
+	    	AnchorPane root = (AnchorPane)loader.load();
+			homeController controller = loader.getController();
+			controller.setModel(model);
+	    	
+			Scene goToHome = new Scene(root);
+	    	Stage newStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+	    	newStage.setScene(goToHome);
+	    	newStage.show();
 	    }
 
 	    @FXML // This method is called by the FXMLLoader when initialization is complete

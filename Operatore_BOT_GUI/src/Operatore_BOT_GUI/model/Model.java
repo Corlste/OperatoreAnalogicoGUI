@@ -16,6 +16,7 @@ public class Model {
 	private List<Azienda> aziende;
 	private Azienda azienda;
 	private Azienda competitor;
+	private Azienda aziendaSelezionata;
 	
 	public Model() {
 		super();
@@ -49,6 +50,16 @@ public class Model {
 		return azienda;
 	}
 
+	
+	
+	public Azienda getAziendaSelezionata() {
+		return aziendaSelezionata;
+	}
+
+	public void setAziendaSelezionata(Azienda aziendaSelezionata) {
+		this.aziendaSelezionata = aziendaSelezionata;
+	}
+
 	public void setAzienda(Azienda azienda) {
 		this.azienda = azienda;
 	}
@@ -57,7 +68,7 @@ public class Model {
 		return aziende;
 	}
 	
-	public List<Azienda> getAziendeMenoSelezionata(){
+	public List<Azienda> getAziendeMenoSelezionata(Azienda azienda){
 		aziende.remove(azienda);
 		return aziende;
 	}

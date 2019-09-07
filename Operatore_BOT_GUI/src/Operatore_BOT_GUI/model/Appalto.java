@@ -48,11 +48,9 @@ public class Appalto {
 	}
 	
 	
-	
 	@Override
 	public String toString() {
-		return "Appalto [codiceAppalto=" + codiceAppalto + ", dataScadenza="
-				+ dataScadenza + ", esito=" + esito + "] \n";
+		return "Appalto " + codiceAppalto + oggetto ;
 	}
 	public Appalto() {
 		super();
@@ -153,6 +151,7 @@ public class Appalto {
 	public void setValoreContratto(double valoreContratto) {
 		this.valoreContratto = valoreContratto;
 	}
+	
 	
 	
 	

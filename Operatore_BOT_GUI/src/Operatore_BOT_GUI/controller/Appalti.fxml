@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -18,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane prefHeight="1558.0" prefWidth="2006.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Operatore_BOT_GUI.controller.AppaltiController">
+<ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="1558.0" prefWidth="2006.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Operatore_BOT_GUI.controller.AppaltiController">
    <content>
       <AnchorPane prefHeight="1302.0" prefWidth="1992.0">
          <children>
@@ -30,15 +29,15 @@
                            <children>
                               <ImageView fx:id="imgComparaangAzAp" fitHeight="126.0" fitWidth="227.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@GISP/TW.png" />
+                                    <Image url="@/Operatore_BOT_GUI/controller/sfondo_conmpara.jpg" />
                                  </image>
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </ImageView>
-                              <VBox prefHeight="126.0" prefWidth="547.0">
+                              <VBox prefHeight="126.0" prefWidth="821.0">
                                  <children>
-                                    <Label fx:id="lblAziendaCompAzAp" prefHeight="40.0" prefWidth="97.0" text="Azienda">
+                                    <Label fx:id="lblAziendaCompAzAp" alignment="CENTER" prefHeight="46.0" prefWidth="828.0" text="Azienda dddggdfgdfgdf">
                                        <padding>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </padding>
@@ -99,7 +98,7 @@
                                        </padding>
                                     </Button>
                                     <Button fx:id="btnTornaClassificaAp" mnemonicParsing="false" onAction="#doTornaclassifica" prefHeight="38.0" prefWidth="94.0" text="Classifica" />
-                                    <ChoiceBox fx:id="cbxAltraAziendaAp" prefHeight="26.0" prefWidth="116.0" />
+                                    <ComboBox fx:id="cmbAltraAziendaAp" onAction="#doApriaListaAziende" prefWidth="150.0" />
                                  </children>
                               </VBox>
                               <GridPane fx:id="lblFunding" prefHeight="603.0" prefWidth="1323.0">
@@ -145,7 +144,7 @@
                                     <TextField fx:id="txtRaggru" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                                     <TextField fx:id="txtCodiceCpv" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                                     <TextField fx:id="txtOggettoApp" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                                    <TextField fx:id="txtLugEsecu" onAction="#doApriLink" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                                    <TextField fx:id="txtLugEsecu" GridPane.columnIndex="1" GridPane.rowIndex="11" />
                                     <TextField fx:id="txtAltrContr" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                                     <Label fx:id="lblFondiEU" prefHeight="18.0" prefWidth="87.0" text="Fondi UE" GridPane.rowIndex="12" />
                                     <Label fx:id="lblCodiceProgettoAp" prefHeight="18.0" prefWidth="122.0" text="Codice progetto" GridPane.rowIndex="13" />
